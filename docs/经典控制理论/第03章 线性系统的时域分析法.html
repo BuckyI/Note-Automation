@@ -9,15 +9,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
-        <title>第三章 线性系统的时域分析法 - 控制理论笔记</title>
+        <title>第三章 线性系统的时域分析法 - 控制理论笔记 Automation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.644de097.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
@@ -77,7 +77,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="控制理论笔记" class="md-header__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+    <a href="../index.html" title="控制理论笔记 Automation" class="md-header__button md-logo" aria-label="控制理论笔记 Automation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -90,7 +90,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            控制理论笔记
+            控制理论笔记 Automation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -258,13 +258,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="控制理论笔记" class="md-nav__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+    <a href="../index.html" title="控制理论笔记 Automation" class="md-nav__button md-logo" aria-label="控制理论笔记 Automation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    控制理论笔记
+    控制理论笔记 Automation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1288,19 +1288,13 @@
 <h3 id="41">4.1 主导极点法<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <p>舍去离虚轴远的，偶极子等，计算性能</p>
 <ul>
-<li>主导极点<ul>
-<li>距离虚轴较近（收敛慢）, 对过渡过程影响较大的闭环极点.<blockquote>
-<p>离虚轴远的极点收敛快，只在响应初期起作用，对动态性能指标如调节时间影响不大</p>
-</blockquote>
-</li>
+<li>主导极点</li>
+<li>距离虚轴较近（收敛慢）, 对过渡过程影响较大的闭环极点.<br />
+    &gt; 离虚轴远的极点收敛快，只在响应初期起作用，对动态性能指标如调节时间影响不大</li>
 <li><strong>判断标准</strong> : <strong>距离虚轴的距离</strong>和其他极点差三倍距离/五倍距离/十倍距离以上）</li>
-</ul>
-</li>
-<li>偶极子<ul>
+<li>偶极子</li>
 <li>靠得很近，作用可以相互抵消的闭环零极点对（近似分子分母相消）</li>
 <li><strong>判断标准</strong> : <strong>零极点距离</strong>记为 <span class="arithmatex">\(L_1\)</span>, 零极点离原点距离 <span class="arithmatex">\(L_2\)</span>, 应该差 10 倍 <span class="arithmatex">\(10 L_1&lt; L_2\)</span></li>
-</ul>
-</li>
 </ul>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -1362,18 +1356,14 @@
 理解方式：<span class="arithmatex">\((s+p_1)(s+p_2)...(s+p_n)\)</span> 根据排列组合，<span class="arithmatex">\(s^k\)</span>的系数应该是 <span class="arithmatex">\(n-k\)</span> 个 <span class="arithmatex">\(p_i\)</span> 相加，如果极点都在左半平面，那么实部应该越加越大，不可能出现有的系数为正有的系数为负的情况.</p>
 <h3 id="62">6.2 劳斯判据 （充要判据）<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
 <ul>
-<li>某行第一个元素是 0<ul>
+<li>某行第一个元素是 0</li>
 <li><strong>原因</strong>（应该是）在于系统临界稳定. 虽然经典控制理论认为临界稳定（根的实部为 0) 不算稳定，但是劳斯判据判别的是特征方程存在<strong>正实部</strong>根的个数. 课程的处理为，这里不认为不稳定.</li>
 <li>用一个很小的正数 <span class="arithmatex">\(\epsilon\)</span> 代替继续算</li>
-</ul>
-</li>
-<li>劳斯表中出现全零行<ul>
+<li>劳斯表中出现全零行</li>
 <li><strong>原因</strong>是特征方程中含有一些大小相等符号相反的实根或共轭虚根 (<strong>关于虚轴对称的根</strong>)。</li>
 <li>处理方法: 利用系数全为零行的<strong>上一行系数</strong>构造一个<strong>辅助多项式</strong>，并以这个辅助多项式<strong>导数的系数</strong>来代替表中系数为全零的行，完成劳斯表的排列。</li>
 <li><strong>辅助多项式的根</strong>即为这些大小相等、符号 相反的根，而且其根的数目总是偶数的。<br />
 <strong>注意</strong>, 辅助多项式只是表明特征方程有这些根，不能根据辅助多项式的次数判定有多少根，你可以通过长除法去掉这些对称的根后继续判断. （经验总结，可以看看下面这个例子）</li>
-</ul>
-</li>
 </ul>
 <p>如果发现存在纯虚根，说明<strong>临界稳定</strong>.</p>
 <div class="admonition example">
@@ -1394,12 +1384,10 @@ q(s)=s^{6}+3s^{5}+10s^{4}+24s^{3}+32s^{2}+48s+32
 <li>系统必须稳定</li>
 <li>只适用于控制输入口加入信号（如果有前馈，就不能使用）</li>
 <li>只对 E=R-B 定义有效（也就是说，误差的定义要在那个很常见的位置）</li>
-<li>只适用于典型输入（大概）<ul>
+<li>只适用于典型输入（大概）</li>
 <li>位置输入 <span class="arithmatex">\(A1(t)\)</span></li>
 <li>速度输入 <span class="arithmatex">\(At\)</span></li>
 <li>加速度输入 <span class="arithmatex">\(\frac{A}{2}t^2\)</span></li>
-</ul>
-</li>
 </ul>
 <p>使用步骤：</p>
 <ol>
@@ -1467,24 +1455,20 @@ All the closed-loop poles have negative real parts.<br />
 <li>（负二阶）: <span class="arithmatex">\(\tau^2s^2+2\xi\tau s+1\)</span> 二阶复合微分环节</li>
 <li>负一阶：<span class="arithmatex">\(s\)</span> <strong>微分环节</strong>（一阶复合微分环节 <span class="arithmatex">\(\tau s+1\)</span>)</li>
 <li>零阶：<span class="arithmatex">\(K\)</span> <strong>比例环节，放大环节</strong></li>
-<li>一阶<ul>
+<li>一阶</li>
 <li>极点为 0：<span class="arithmatex">\(\frac{1}{Ts}\)</span><strong>积分环节</strong> (<span class="arithmatex">\(\frac{1}{s}\)</span>)</li>
 <li>极点不为 0：<span class="arithmatex">\(\frac{1}{Ts+1}\)</span><ul>
 <li>极点为负：<span class="arithmatex">\(T&gt;0\)</span> <strong>惯性环节，惯性单元</strong></li>
 <li>极点为正：<span class="arithmatex">\(T&lt;0\)</span> <strong>不稳定环节</strong></li>
 </ul>
 </li>
-</ul>
-</li>
-<li>二阶<ul>
+<li>二阶</li>
 <li>极点为负：<span class="arithmatex">\(T&gt;0,0\le\varsigma&lt;1\)</span><ul>
 <li>一般情况下：<strong>振荡环节</strong> <span class="arithmatex">\(\frac{1}{T^2s^2+2\xi Ts+1}\)</span></li>
 <li>当阻尼系数大于等于 1 时，二阶环节可以分解为两个惯性环节的乘积，不叫振荡环节。</li>
 </ul>
 </li>
 <li>极点为正：<span class="arithmatex">\(T&gt;0,-1&lt;\varsigma&lt;0\)</span> <strong>不稳定环节</strong></li>
-</ul>
-</li>
 <li>特殊的<strong>滞后环节</strong>：<span class="arithmatex">\(e^{-\tau s}\)</span></li>
 </ul>
 <blockquote>
@@ -1493,25 +1477,21 @@ All the closed-loop poles have negative real parts.<br />
 <hr />
 <p>动态性能指标：</p>
 <ul>
-<li>
-<p>动态过程，动态性能指标<br />
-  一般认为，阶跃输入对系统来说是最严峻的工作状态，通常在<strong>阶跃函数</strong>作用下（零状态），测定或计算系统的动态性能。</p>
-<ul>
+<li>动态过程，动态性能指标<br />
+  一般认为，阶跃输入对系统来说是最严峻的工作状态，通常在<strong>阶跃函数</strong>作用下（零状态），测定或计算系统的动态性能。</li>
 <li>误差积分指标</li>
 <li>上升时间 <span class="arithmatex">\(t_r\)</span>：响应从终值 10%上升到 90%所需时间，对有震荡的系统，也可以定义为从 0 第一次上升到终值的时间。</li>
 <li>峰值时间 <span class="arithmatex">\(t_p\)</span>：响应超过终值达到第一个峰值的时间。</li>
 <li>调节时间/过渡过程时间 <span class="arithmatex">\(t_s\)</span>：响应到达并保持在终值上下 5%内所需时间。</li>
-<li>超调量 <span class="arithmatex">\(\sigma\)</span>：响应最大偏移量与终值的差与终值的比。</li>
-</ul>
+<li>
+<p>超调量 <span class="arithmatex">\(\sigma\)</span>：响应最大偏移量与终值的差与终值的比。</p>
 </li>
 <li>
 <p>稳态过程，稳态性能指标<br />
   通常在阶跃函数，斜坡函数，加速度函数作用下进行测量。</p>
-<ul>
+</li>
 <li>稳定性</li>
 <li>稳态误差</li>
-</ul>
-</li>
 </ul>
 <blockquote>
 <p>似乎只讲了阶跃响应的动态性能指标<br />
@@ -1535,11 +1515,9 @@ All the closed-loop poles have negative real parts.<br />
 <ul>
 <li>一阶系统</li>
 <li>二阶系统：用的比较多，因为二阶平方项变化快。</li>
-<li>高阶系统：没办法手算，所以不讲。<ul>
+<li>高阶系统：没办法手算，所以不讲。</li>
 <li>使用 MATLAB 仿真</li>
 <li>（忽略远离虚轴的极点）近似成一阶或者二阶系统。</li>
-</ul>
-</li>
 </ul>
 <p>高阶系统的近似：<br />
 这部分是在第四章根轨迹法讲到的，通过观察<strong>零极点</strong>变化后对<strong>时间响应</strong>的影响，可以通过：取掉闭环偶极子之后，找到最接近虚轴的主导极点 （一个实极点或者两个共轭极点）, 简化为一阶系统或者二阶系统进行分析.</p>
@@ -1636,11 +1614,9 @@ $$</p>
 <p>正反馈通常是不稳定的，负反馈不一定稳定。<br />
 <strong>填空题</strong></p>
 <ul>
-<li>线性系统稳定性与初始状态无关<ul>
+<li>线性系统稳定性与初始状态无关</li>
 <li>特征方程的所有跟均具有负实部（<strong>实部为 0 的纯虚根不被当做稳定，经典控制理论中，只有渐进稳定的系统才称之为稳定系统</strong>）时稳定。</li>
 <li>极点均位于左半平面时稳定。</li>
-</ul>
-</li>
 <li>非线性系统稳定性与初始状态有关</li>
 </ul>
 <p>将问题转化为：“如何判断一个方程有没有右根？”</p>
@@ -1747,21 +1723,15 @@ e_{ss}=\lim_{s\to0}sE(s)
 然后一般就这三种了，如果要归纳一般结论的话：<br />
 （从上面列的式子可以很容易理解）</p>
 <ul>
-<li><span class="arithmatex">\(\alpha-1=\gamma\)</span>时<ul>
+<li><span class="arithmatex">\(\alpha-1=\gamma\)</span>时</li>
 <li>静态误差系数为<span class="arithmatex">\(K\)</span></li>
 <li>稳态误差为<span class="arithmatex">\(1/K\)</span></li>
-</ul>
-</li>
-<li><span class="arithmatex">\(\alpha-1&lt;\gamma\)</span>时<ul>
+<li><span class="arithmatex">\(\alpha-1&lt;\gamma\)</span>时</li>
 <li>静态误差系数为<span class="arithmatex">\(\infty\)</span></li>
 <li>稳态误差为<span class="arithmatex">\(0\)</span></li>
-</ul>
-</li>
-<li><span class="arithmatex">\(\alpha-1&gt;\gamma\)</span>时<ul>
+<li><span class="arithmatex">\(\alpha-1&gt;\gamma\)</span>时</li>
 <li>静态误差系数为<span class="arithmatex">\(0\)</span></li>
 <li>稳态误差为<span class="arithmatex">\(\infty\)</span></li>
-</ul>
-</li>
 </ul>
 </blockquote>
 <table>
@@ -1797,26 +1767,18 @@ e_{ss}=\lim_{s\to0}sE(s)
 <p>分析举例：<br />
 参考课本上一阶系统的分析：</p>
 <ul>
-<li>单位脉冲响应：<ul>
+<li>单位脉冲响应：</li>
 <li><span class="arithmatex">\(c(t)=\frac{1}{T}e^{-\frac{t}{T}}\)</span></li>
 <li>稳态误差为 0</li>
-</ul>
-</li>
-<li>单位阶跃响应：<ul>
+<li>单位阶跃响应：</li>
 <li><span class="arithmatex">\(c(t)=1-e^{-\frac{t}{T}}\)</span></li>
 <li>稳态误差为 0</li>
-</ul>
-</li>
-<li>单位斜坡响应：<ul>
+<li>单位斜坡响应：</li>
 <li><span class="arithmatex">\(c(t)=(t-T)+Te^{-\frac{t}{T}}\)</span></li>
 <li>稳态误差为 T</li>
-</ul>
-</li>
-<li>单位加速度响应：<ul>
+<li>单位加速度响应：</li>
 <li><span class="arithmatex">\(c(t)=\frac{1}{2}t^2-Tt+T^2(1-e^{-\frac{t}{T}})\)</span></li>
 <li>跟踪误差随时间推移而增大至无限，因此一阶系统不能实现对加速度输入函数的跟踪。</li>
-</ul>
-</li>
 </ul>
 <hr />
 <p>考虑误差扰动的稳态误差计算</p>
@@ -1895,10 +1857,10 @@ e_{ss}=\lim_{s\to0}sE(s)
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      <script src="../assets/javascripts/bundle.c44cc438.min.js"></script>
       
         <script src="../javascripts/mathjax.js"></script>
       
