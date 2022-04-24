@@ -1,0 +1,2035 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>第五章 线性系统的频域分析法 - 控制理论笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="控制理论笔记" class="md-header__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            控制理论笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第五章 线性系统的频域分析法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      README
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/index.html" class="md-tabs__link">
+        学科理解
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/index.html" class="md-tabs__link">
+        现代控制理论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link md-tabs__link--active">
+        经典控制理论
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="控制理论笔记" class="md-nav__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    控制理论笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        README
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/index.html">学科理解</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="学科理解" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          学科理解
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/%E6%9D%8E%E5%9B%BD%E6%9D%B0%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E8%8B%A5%E5%B9%B2%E8%AE%A4%E8%AF%86%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        李国杰：有关人工智能的若干认识问题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/index.html">现代控制理论</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="现代控制理论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          现代控制理论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        CH1. 系统的状态空间模型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch2%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%83%BD%E6%8E%A7%E6%80%A7%E5%92%8C%E8%83%BD%E8%A7%82%E6%80%A7.html" class="md-nav__link">
+        CH2. 线性系统的能控性和能观性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch3%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7.html" class="md-nav__link">
+        CH3. 系统的稳定性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch4%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88.html" class="md-nav__link">
+        CH4. 线性系统综合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch5%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA.html" class="md-nav__link">
+        Ch5. 非线性控制理论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch6%20%E5%85%B6%E4%BB%96.html" class="md-nav__link">
+        CH6. 其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="index.html">经典控制理论</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="经典控制理论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          经典控制理论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC01%E7%AB%A0%20%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E7%9A%84%E4%B8%80%E8%88%AC%E6%A6%82%E5%BF%B5.html" class="md-nav__link">
+        第一章 自动控制的一般概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC02%E7%AB%A0%20%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        第二章 控制系统的数学模型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC03%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95.html" class="md-nav__link">
+        第三章 线性系统的时域分析法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC04%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B9%E8%BD%A8%E8%BF%B9%E6%B3%95.html" class="md-nav__link">
+        第四章 线性系统的根轨迹法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第五章 线性系统的频域分析法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95.html" class="md-nav__link md-nav__link--active">
+        第五章 线性系统的频域分析法
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-nyquist-" class="md-nav__link">
+    2 Nyquist 曲线 - 辐相频率特性曲线
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Nyquist 曲线 - 辐相频率特性曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 一些典型曲线的研究
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 一些典型曲线的研究">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    2.1.1 二阶震荡环节的奈氏曲线与谐振现象 
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    2.1.2 延迟环节
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-nyquist" class="md-nav__link">
+    2.2 Nyquist 曲线的绘制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-nyquist" class="md-nav__link">
+    2.3 Nyquist 曲线的修正 
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-" class="md-nav__link">
+    3 波特图 - 幅频特性曲线
+  </a>
+  
+    <nav class="md-nav" aria-label="3 波特图 - 幅频特性曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 二阶系统波特图分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 由传递函数绘制波特图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 波特图相关计算
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 由波特图进行频域分析的基本观念：斜率与角度对应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4 系统稳定性的频域分析法
+  </a>
+  
+    <nav class="md-nav" aria-label="4 系统稳定性的频域分析法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 稳定性 —— 奈式判据
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 稳定性 —— 奈式判据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411" class="md-nav__link">
+    4.1.1 基本方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412" class="md-nav__link">
+    4.1.2 应用举例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413" class="md-nav__link">
+    4.1.3 特点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 稳定程度 —— 稳定裕度
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 稳定程度 —— 稳定裕度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421" class="md-nav__link">
+    4.2.1 概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422" class="md-nav__link">
+    4.2.2 频域指标和时域动态性能指标
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423" class="md-nav__link">
+    4.2.3 求稳定裕度的思路总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5 三频段理论
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6 系统闭环频率特性分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    7 上课笔记
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC06%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9F%AB%E6%AD%A3%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        第六章 线性系统的校正方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC07%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%AB%E6%AD%A3.html" class="md-nav__link">
+        第七章 线性离散系统的分析与矫正
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC08%E7%AB%A0%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90.html" class="md-nav__link">
+        第八章 非线性控制系统分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC09%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%BC%E5%90%88.html" class="md-nav__link">
+        第九章 线性系统的状态空间分析与综合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC10%E7%AB%A0%20%E5%8A%A8%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        第十章 动态系统的最优控制方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA.html" class="md-nav__link">
+        经典控制理论
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-nyquist-" class="md-nav__link">
+    2 Nyquist 曲线 - 辐相频率特性曲线
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Nyquist 曲线 - 辐相频率特性曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 一些典型曲线的研究
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 一些典型曲线的研究">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    2.1.1 二阶震荡环节的奈氏曲线与谐振现象 
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    2.1.2 延迟环节
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-nyquist" class="md-nav__link">
+    2.2 Nyquist 曲线的绘制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-nyquist" class="md-nav__link">
+    2.3 Nyquist 曲线的修正 
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-" class="md-nav__link">
+    3 波特图 - 幅频特性曲线
+  </a>
+  
+    <nav class="md-nav" aria-label="3 波特图 - 幅频特性曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 二阶系统波特图分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 由传递函数绘制波特图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 波特图相关计算
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 由波特图进行频域分析的基本观念：斜率与角度对应
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4 系统稳定性的频域分析法
+  </a>
+  
+    <nav class="md-nav" aria-label="4 系统稳定性的频域分析法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 稳定性 —— 奈式判据
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 稳定性 —— 奈式判据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411" class="md-nav__link">
+    4.1.1 基本方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412" class="md-nav__link">
+    4.1.2 应用举例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413" class="md-nav__link">
+    4.1.3 特点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 稳定程度 —— 稳定裕度
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 稳定程度 —— 稳定裕度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421" class="md-nav__link">
+    4.2.1 概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422" class="md-nav__link">
+    4.2.2 频域指标和时域动态性能指标
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423" class="md-nav__link">
+    4.2.3 求稳定裕度的思路总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5 三频段理论
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6 系统闭环频率特性分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    7 上课笔记
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">第五章 线性系统的频域分析法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#_1">第五章 线性系统的频域分析法</a><ul>
+<li><a href="#1">1 基本概念</a></li>
+<li><a href="#2-nyquist-">2 Nyquist 曲线 - 辐相频率特性曲线</a><ul>
+<li><a href="#21">2.1 一些典型曲线的研究</a><ul>
+<li><a href="#211">2.1.1 二阶震荡环节的奈氏曲线与谐振现象 </a></li>
+<li><a href="#212">2.1.2 延迟环节</a></li>
+</ul>
+</li>
+<li><a href="#22-nyquist">2.2 Nyquist 曲线的绘制</a></li>
+<li><a href="#23-nyquist">2.3 Nyquist 曲线的修正 </a></li>
+</ul>
+</li>
+<li><a href="#3-">3 波特图 - 幅频特性曲线</a><ul>
+<li><a href="#31">3.1 二阶系统波特图分析</a></li>
+<li><a href="#32">3.2 由传递函数绘制波特图</a></li>
+<li><a href="#33">3.3 波特图相关计算</a></li>
+<li><a href="#34">3.4 由波特图进行频域分析的基本观念：斜率与角度对应</a></li>
+</ul>
+</li>
+<li><a href="#4">4 系统稳定性的频域分析法</a><ul>
+<li><a href="#41">4.1 稳定性 —— 奈式判据</a><ul>
+<li><a href="#411">4.1.1 基本方法</a></li>
+<li><a href="#412">4.1.2 应用举例</a></li>
+<li><a href="#413">4.1.3 特点</a></li>
+</ul>
+</li>
+<li><a href="#42">4.2 稳定程度 —— 稳定裕度</a><ul>
+<li><a href="#421">4.2.1 概念</a></li>
+<li><a href="#422">4.2.2 频域指标和时域动态性能指标</a></li>
+<li><a href="#423">4.2.3 求稳定裕度的思路总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5">5 三频段理论</a></li>
+<li><a href="#6">6 系统闭环频率特性分析</a></li>
+<li><a href="#7">7 上课笔记</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="1">1 基本概念<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">对比分析</p>
+<p>时域法：<strong>直接分析闭环极点</strong>，判断闭环系统的输出（实际上是铺垫，因为讲时域分析方法的时候，只是针对一阶二阶这样的模块，没有强调反馈的存在）<br />
+根轨迹法：通过开环传递函数的零极点，以根轨迹<strong>求解</strong>得到<strong>闭环零极点</strong>, 分析闭环性能<br />
+频域法：从开环传递函数的<strong>频率特性</strong>（三频段理论只适用于<strong>单位负反馈的最小相角系统</strong>) 直接分析闭环特征<br />
+<strong>TODO: 也许这个可以单独开一页</strong></p>
+</div>
+<p>频率特性：<strong>稳态正弦响应</strong>的幅相变化</p>
+<ul>
+<li>幅值比，相角差</li>
+<li>输出的富氏变换/输入的富氏变换</li>
+<li><span class="arithmatex">\(G(s)\to G(j\omega)\)</span><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</li>
+<li>在 <code>[s]</code> 平面上，自变量沿虚轴取值 <span class="arithmatex">\(s=j0\to j\infty\)</span> 时，复函数 <span class="arithmatex">\(G(s)\)</span> 在 <code>[G]</code> 平面上用复矢量描述，即频率特性 <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-18-54-23.jpg" /><ul>
+<li>s 平面：自变量沿虚轴取值，画出 <span class="arithmatex">\(G(s)\)</span> 各个零极点指向自变量的矢量，能够很直观地获得每个零极点贡献的幅值和相角.</li>
+<li>G 平面：实质上就是奈氏曲线</li>
+</ul>
+</li>
+</ul>
+<p>各种曲线：</p>
+<ul>
+<li>频率特性曲线 (?)<ul>
+<li>相频特性曲线 <span class="arithmatex">\(L(\omega)\)</span></li>
+<li>幅频特性曲线 <span class="arithmatex">\(\varphi(\omega)\)</span></li>
+</ul>
+</li>
+<li>幅相特性曲线 <span class="arithmatex">\(G(j\omega)\)</span>  (Nyquist 曲线）<code>[G]</code> 平面</li>
+<li>对数频率特性 （波特图）<ul>
+<li>对数幅频特性</li>
+<li>对数相频特性</li>
+</ul>
+</li>
+<li>对数幅相特性曲线 （尼克尔斯图 Nichols）: 闭环频率特性曲线绘制的时候用到了</li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>注意频域分析中 角频率<span class="arithmatex">\(\omega\)</span> 的单位是 <span class="arithmatex">\(rad/s\)</span><br />
+<span class="arithmatex">\(\omega=2\pi f\)</span><br />
+而相角裕度往往用 ° 作为单位<br />
+谨慎区分</p>
+</div>
+<h2 id="2-nyquist-">2 Nyquist 曲线 - 辐相频率特性曲线<a class="headerlink" href="#2-nyquist-" title="Permanent link">&para;</a></h2>
+<p>又称：开环幅相曲线</p>
+<h3 id="21">2.1 一些典型曲线的研究<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>比例环节</li>
+<li>积分环节：分母 s</li>
+<li>惯性环节：分母一阶<ul>
+<li>不稳定惯性环节</li>
+</ul>
+</li>
+<li>二阶震荡环节：分母二阶<ul>
+<li>不稳定二阶震荡环节</li>
+</ul>
+</li>
+<li>一阶复合微分环节：分子一阶<ul>
+<li>不稳定的一阶复合微分环节</li>
+</ul>
+</li>
+<li>二阶复合微分环节：分子二阶<ul>
+<li>不稳定的二阶复合微分环节</li>
+</ul>
+</li>
+<li>延迟环节</li>
+</ul>
+<h4 id="211">2.1.1 二阶震荡环节的奈氏曲线与谐振现象 <a id="two"></a><a class="headerlink" href="#211" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-19-40-16.png" /></p>
+<p>谐振频率、谐振峰值<br />
+谐振峰值<span class="arithmatex">\(M_r\)</span>—振荡环节稳态输出能达到的最大幅值比<br />
+谐振频率<span class="arithmatex">\(\omega_r\)</span>—使输出达到幅值时的频率值</p>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-19-45-18.png" /></p>
+<blockquote>
+<p>s 平面分析：固定<span class="arithmatex">\(\omega_n\)</span>, 这样极点都位于圆弧上. 不同的 <span class="arithmatex">\(\xi\)</span> 画出对应的频率特性.<br />
+第二张图画了一张竖线，但是谐振频率实际上并不是固定的，<span class="arithmatex">\(\xi=0.707\)</span>时刚开始出现共振<span class="arithmatex">\(\omega_r=0\)</span>, 随着阻尼比减小，<span class="arithmatex">\(\omega_r\uparrow\)</span>, 最终 <span class="arithmatex">\(\omega_r=\omega_n\)</span>, 谐振峰值也变为无穷大.</p>
+</blockquote>
+<p>简单记忆：阻尼比越小，曲线越陡峭.</p>
+<p>奈氏曲线的特殊点：<strong>与虚轴交点</strong> <span class="arithmatex">\(-j\frac{1}{2\xi}\)</span>, 此时<span class="arithmatex">\(\omega=\omega_n\)</span>.</p>
+<h4 id="212">2.1.2 延迟环节<a class="headerlink" href="#212" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-19-55-39.png" /><br />
+在时域上，延迟环节表现为信号的平移.<br />
+在频域上，延迟环节减小相角 <span class="arithmatex">\(\tau\omega\)</span>, 即频率越高相角减少越小. 含有延迟环节的奈氏曲线就变成了一种螺旋型.</p>
+<blockquote>
+<p>螺旋形意味着转多少圈不确定，分析稳定性时可以分析下特殊点，例如计算延迟为多少时，奈氏曲线刚好过<span class="arithmatex">\((-1,0)\)</span></p>
+</blockquote>
+<h3 id="22-nyquist">2.2 Nyquist 曲线的绘制<a class="headerlink" href="#22-nyquist" title="Permanent link">&para;</a></h3>
+<ol>
+<li>确定<span class="arithmatex">\(G(j0)\)</span>,<span class="arithmatex">\(G(j\infty)\)</span></li>
+<li>中间段由变化规律大概绘制</li>
+<li>必要时计算与实轴，虚轴的交点</li>
+</ol>
+<p>奈氏曲线只能画一个大概，例如：</p>
+<ul>
+<li>中间段变化趋势只能认为是<strong>单调变化</strong>的，大多数情况下<strong>判稳</strong>足够了.</li>
+<li>起始的无穷远点一般是贴着虚轴画，实际上无穷远点可能与虚轴有一段距离</li>
+</ul>
+<p>有些特殊情况下会画的不太准确（尤其是具有非最小相位环节）, 详见 <a href="#修正">修正部分</a>.</p>
+<h3 id="23-nyquist">2.3 Nyquist 曲线的修正 <a id="修正"></a><a class="headerlink" href="#23-nyquist" title="Permanent link">&para;</a></h3>
+<p>曲线指定了 <span class="arithmatex">\(\omega=0\to \infty\)</span> （结合后面稳定判据，实际上是 Nyquist 路径的一半。)</p>
+<ol>
+<li>
+<p>虚轴上存在极点</p>
+<ol>
+<li>如果有积分环节 （原点处有极点），则需要绕一个路径，从<span class="arithmatex">\(0\;(s=\varepsilon+j0)\to 0^+ (s=0+j\varepsilon)\)</span>. 反映在 Nyquist 曲线上就是多了一个虚线圆弧. <strong>相角突变减少 90°</strong></li>
+<li>如果在虚轴上有其他共轭极点，也是同理进行补充。 <strong>相角突变减少 180°</strong></li>
+<li>
+<p>总结：对于极点<span class="arithmatex">\(j\omega\)</span>, 取路径<span class="arithmatex">\(j\omega+\epsilon e^{j\theta}\)</span>, 按照逆时针路径（相角增大的方向走）. 因为极点是在分母上作用，所以这段路径使幅值无限大，相角往减小的方向走（逆时针）.</p>
+<p>模都是无穷大，相角有个跳跃.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><span class="arithmatex">\(\omega=0^+\)</span> 时刻，<strong>离虚轴最近的那个零点或者极点</strong>对相角变化产生的影响<strong>最先发挥作用，</strong>故需要使角度进行一定程度的修正，比如 <span class="arithmatex">\(90^{\circ}\to90^{\circ}-\)</span></p>
+</li>
+<li>
+<p>存在不稳定环节 <span class="arithmatex">\(\tau s-1,\frac1{Ts-1}\)</span>时， 系统为非最小相位系统，相角变化往往变得更大。分析方法同 2。</p>
+<p><span class="arithmatex">\(\omega=0^+\)</span> 时刻，<strong>离虚轴最近的那个零点或者极点</strong>对相角变化产生的影响<strong>占主导地位。</strong>因此相角变化可能会有个折返 ，例如先增大（非线性的<span class="arithmatex">\(\frac1{Ts-1}\)</span>刚开始让相角增大）后减小（总体趋势不可违背）（一般情况下， 普通的相角则是默认单调变化的）</p>
+<p><img alt="" src="assets/%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Untitled%209.png" /></p>
+</li>
+</ol>
+<p>一般我们画奈氏曲线，实际上是概略曲线，认为<strong>相角单调减小</strong>，而存在零点甚至不稳定环节时，曲线可能会扭曲，这种相角折返是分析不出来的.<br />
+所以，如果需要的话，需要通过 <span class="arithmatex">\(G(j\omega)\)</span>分析一下和对应的轴有没有交点.<br />
+和实轴交点：<span class="arithmatex">\(G(j\omega)\)</span> 虚部为 0 求解 <span class="arithmatex">\(\omega\)</span>; 另一种情况同理.</p>
+<h2 id="3-">3 波特图 - 幅频特性曲线<a class="headerlink" href="#3-" title="Permanent link">&para;</a></h2>
+<ul>
+<li>横轴：<span class="arithmatex">\(\lg \omega\)</span> 为单位长度，<strong>等距等比</strong></li>
+<li>纵轴：<span class="arithmatex">\(L(\omega)=20\lg |G(\omega)| dB\)</span></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">关于单位分贝</p>
+<p>单位：贝尔，分贝 最初是用来衡量声音强度<br />
+声源<strong>功率</strong>提升 10 倍，人耳听起提升大 1 倍<br />
+<span class="arithmatex">\(\lg\frac{p_c}{p_r}(B)=10\lg\frac{p_c}{p_r}(dB)\)</span></p>
+<blockquote>
+<p>1 贝尔=10 分贝<br />
+<span class="arithmatex">\(p_r\)</span> 指人耳刚好听到声音</p>
+</blockquote>
+<p>由于在电学中，<span class="arithmatex">\(p=\frac{u^2}{R}\)</span>, 因此用 u 衡量功率，多了个平方，1 B = 20 dB</p>
+<blockquote>
+<p>波特图中幅值也就是电压幅值</p>
+</blockquote>
+</div>
+<p>波特图的特点：<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-21-00-32.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">关于横轴坐标</p>
+<p>在画幅频特性曲线时，横坐标是以 <span class="arithmatex">\(\lg \omega\)</span> 为单位的，等距等比.<br />
+所以纵轴不可能放在 <span class="arithmatex">\(\omega=0\)</span> 处. 一般来说，<strong>纵轴起始位置</strong>的 <span class="arithmatex">\(\omega\)</span> 是 0.1, 1, 0.01 这种.<br />
+因此，尽管零型以上的系统，<span class="arithmatex">\(\omega\to0\)</span> 时，幅值为无穷大，但是波特图上不会出现无穷大的点.<br />
+另外，在用波特图进行相关计算时，根据等距等比可以列关系式（差不多是用几何关系求）</p>
+</div>
+<p>几个关键频率：<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-21-29-27.png" /></p>
+<h3 id="31">3.1 二阶系统波特图分析<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>其实 <a href="#two">前文</a> 已经很好地分析了二阶震荡环节的谐振现象.<br />
+这里特别拿出幅频特性分析对数幅频曲线的特点。<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/20220308210819.jpg" /></p>
+<blockquote>
+<p>注意这里是对数幅频曲线，谐振处高度为 <span class="arithmatex">\(20\lg M_r\)</span></p>
+</blockquote>
+<p>阻尼比越小，曲线越陡峭，<span class="arithmatex">\(\xi=0\)</span> 时：<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-21-25-02.png" /></p>
+<blockquote>
+<p>二阶复合微分环节和震荡环节只是一个在分子一个在分母<br />
+取对数之后是正负符号相反，因此计算公式基本相同（谐振峰值计算公式分母放分子上，或者取对数后取反）.</p>
+</blockquote>
+<h3 id="32">3.2 由传递函数绘制波特图<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<ul>
+<li>分母有几个 s （积分环节） &rarr; <strong>确定初始斜率</strong></li>
+<li>开环增益 K （舍去积分环节 <span class="arithmatex">\(s^v\)</span> 后令 <span class="arithmatex">\(s=0\)</span>) &rarr; <strong>确定关键点</strong><ul>
+<li>关键点 1: <span class="arithmatex">\(\omega=1, L(1)=20\lg K\)</span></li>
+<li>关键点 2: 低频段延长线交横轴交点 <span class="arithmatex">\(L=0dB, \omega=K^{\frac1v}\)</span><br />
+    &gt; <span class="arithmatex">\(A=\frac{K}{s^v}=1\to\omega=K^{\frac1v}\)</span></li>
+</ul>
+</li>
+<li>经过上两步，低频段能够完全确定，之后就是依次经过转折频率，斜率相应变化<br />
+    &gt; 大多情况下，波特图是绘制个大概趋势，如果是精确绘制的话，用半对数坐标纸画就好了.</li>
+<li>最后矫正二阶环节<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-21-43-34.png" /></li>
+</ul>
+<blockquote>
+<p>当然如果不熟练的话，对传递函数进行转换，<span class="arithmatex">\(G(s)=\frac{K(\frac{s}{\omega_2}+1)}{s(\frac{s}{\omega_1}+1)(\frac{s}{\omega_3}+1)}\)</span></p>
+</blockquote>
+<p>关于对数相频曲线：<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-21-47-52.png" /><br />
+对数相频曲线一般只能通过特殊点描了。</p>
+<h3 id="33">3.3 波特图相关计算<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>根据波特图进行计算时，往往有两个思路：几何上用等距等比列式求解某个坐标；或者用"近似的传递函数"计算，这感觉更好用更接近本质，但是课本上好像并没有明确的表述.</p>
+</div>
+<p>由波特图确定传递函数<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-21-47-19.png" /></p>
+<p>由波特图确定某个转折频率，增益<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-08-22-04-41.png" /></p>
+<p>由波特图<strong>确定截止频率</strong> <a id="确定截止频率"></a><br />
+波特图本身就是<strong>近似</strong>的，近似规则体现如下：<br />
+由于系统的基本单位是 <span class="arithmatex">\(\frac s\omega+1,\;\frac 1{\omega^2}s^2+2\frac\xi\omega s+1\)</span><br />
+转折频率在 <span class="arithmatex">\(\omega_c\)</span> 后面的，没有发挥作用，求模的过程中置为 1<br />
+转折频率在 <span class="arithmatex">\(\omega_c\)</span> 前面的，发挥了作用，求模的过程中置为<span class="arithmatex">\(\frac s\omega,\;(\frac s\omega)^2\)</span></p>
+<p>如果没有精确的波特图让你读数，要手算幅频特性曲线上的<span class="arithmatex">\(\omega_c\)</span>, 就通过上面这个规则进行...</p>
+<ul>
+<li>你需要先判断下截止频率在哪个区间，如果题目只给了开环传函，也可以先根据转折频率<strong>画出幅频曲线的大致趋势</strong>，然后依次判断转折频率处模大于 1 还是小于 1，从而<strong>确定截止频率所处区间</strong></li>
+<li>然后传递函数进行相应的转换，转折频率&lt;截止频率，则该环节置为 <span class="arithmatex">\(\frac s\omega,\;(\frac s\omega)^2\)</span>; 转折频率&gt;截止频率，则该环节置为 1.</li>
+<li>
+<p>最后令简化后的"传递函数"模为 1, 算出截止频率.</p>
+<blockquote>
+<p>最后这个算的步骤可以通过计算器进行试根~</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="34">3.4 由波特图进行频域分析的基本观念：<strong>斜率与角度对应</strong><a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<div class="admonition cite">
+<p class="admonition-title">Cite</p>
+<p>本思路在卢京潮老师的课程中有详细介绍，强烈建议掌握.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>斜率</th>
+<th>对应相角</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20dB/dec</td>
+<td>90°</td>
+</tr>
+<tr>
+<td>0dB/dec</td>
+<td>0°</td>
+</tr>
+<tr>
+<td>-20dB/dec</td>
+<td>-90°</td>
+</tr>
+<tr>
+<td>-40dB/dec</td>
+<td>-180°</td>
+</tr>
+<tr>
+<td>-60dB/dec</td>
+<td>-270°</td>
+</tr>
+</tbody>
+</table>
+<p>众所周知，传递函数可以拆分成 由 s 和 <span class="arithmatex">\(\frac s\omega+1\)</span> 作为基本单位组成的，区别只是放在分子还是分母，以及转折频率不同.</p>
+<ul>
+<li>对于 积分环节 <span class="arithmatex">\(\frac{1}{s}\)</span> 和微分环节 <span class="arithmatex">\(s\)</span>，提供的相角是稳定不变的</li>
+<li>而对于<span class="arithmatex">\(s+\omega\)</span> , 当 s 较大时，相角趋向 90°，也视为稳定不变的，相角的归宿为此.</li>
+</ul>
+<p>因此，对于每个特定的斜率，相角都有一个最终的归宿，如果 L 的斜率一直保持在斜率 k , 则相角将<strong>趋向并稳定</strong>在相应的角度 <span class="arithmatex">\(\frac{k}{20}*90\)</span>.</p>
+<p>根据 L 的斜率变化，我们可以知道相角的变化趋势，是在何时有向上趋势，何时有向下趋势.</p>
+<p><strong>基于上述理解，可以获得下面的结论：</strong></p>
+<ul>
+<li>如果 k 依次是 -20, -40, -60, 对应 -90, -180, -270. 其中最左边最右边都是平的，左右施加影响力相同，那么根据对称性，很容易理解 <span class="arithmatex">\(\varphi(\omega_g)=180^\circ\)</span> 处于两个转折频率几何中心处.<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-09-16-31-10.png" /></li>
+<li>如果幅频特性左右平移，那么相频特性也将同步平移.</li>
+<li>-20 对应-90, 因此我们希望中频带以-20 斜率穿越 0dB 线，并且中频带尽可能宽. （如果中频带无限宽，那么相角裕度将无限趋于 <span class="arithmatex">\(\gamma=180-90=90\)</span> )</li>
+<li>
+<p>从感性角度理解，每个斜率都是一个领域，在这个领域内，相频特性曲线将向着斜率对应的最终归宿去努力.</p>
+<p>只不过领域受左右领域的影响。如果本领域足够宽，那么将屏蔽掉左右的影响.</p>
+<p>滞后超前矫正，我们让滞后部分规定幅值，但是不希望影响相角，那么就让超前部分起作用的点与滞后部分转折频率 <span class="arithmatex">\(\frac 1{bT}\)</span> 相差 10 倍，这样滞后部分施加的影响就是-6°, 如此就可以安心只考虑超前部分设计了.</p>
+</li>
+</ul>
+<h2 id="4">4 系统稳定性的频域分析法<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 稳定性 —— 奈式判据<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>仅针对最小相位系统，<span class="arithmatex">\(\gamma &gt;0, h&gt;1\)</span> 时系统一定稳定. 其他情况要用奈氏判据.</p>
+</blockquote>
+<h4 id="411">4.1.1 基本方法<a class="headerlink" href="#411" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(Z=P-2N\)</span></p>
+<ul>
+<li>Z: 右半 s 平面闭环极点个数 （如果 <span class="arithmatex">\(Z&gt;0\)</span> 则系统不稳定，Z 不可能为负）</li>
+<li>P: 右半 s 平面开环极点个数</li>
+<li>
+<p>N: 有很多种理解方式，不同的理解方式对应不同的<strong>奈氏判据</strong></p>
+<ul>
+<li>
+<p>用<strong>最初推导结论</strong>的理解方式：N 是奈氏曲线 <span class="arithmatex">\(G(j\omega)\)</span> 逆时针绕 <span class="arithmatex">\((-1, j0)\)</span> 的<strong>圈数</strong>.<br />
+    逆时针方向为正圈数，顺时针方向为负圈数<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/20220309_164418.jpg" /></p>
+</li>
+<li>
+<p>更简洁实用的理解方式：看奈氏曲线，N 是 -1 左侧的<strong>净穿越次数</strong>，不记录穿过 <span class="arithmatex">\((-1,j0)\)</span> 的次数，穿过时临界稳定.<br />
+    从下往上穿越，相角减小，是一次负穿越 <span class="arithmatex">\(N_-\)</span>；从上往下穿越，相角增大，是一次正穿越 <span class="arithmatex">\(N_+\)</span> ；<br />
+    如果穿越起点来自实轴，则是半次穿越.<br />
+    最后 <span class="arithmatex">\(N=N_+-N_-\)</span></p>
+</li>
+<li>此外，从波特图的对数相频特性曲线也能够看，看 -180° (<span class="arithmatex">\((2k+1)\pi\)</span>) 线的<strong>穿越次数</strong>. 此方法也叫做对数稳定判据.<br />
+    相角减小，是一次负穿越；相角增大，是一次正穿越；</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">关于原始推导</p>
+<p><a href="https://www.bilibili.com/video/BV1yg4y1B7JM">奈奎斯特稳定性判据_Nyquist Stability Criterion 哔哩哔哩</a><br />
+讲的挺好的，用到了柯西辐角原理 / 围线映射</p>
+</div>
+<h4 id="412">4.1.2 应用举例<a class="headerlink" href="#412" title="Permanent link">&para;</a></h4>
+<p>这里列举了一些特殊情况，处理方法回顾 <a href="#修正">奈氏曲线的修正</a>.</p>
+<details class="example">
+<summary>具有不稳定环节系统的奈氏曲线与判稳</summary>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-09-17-07-08.png" /></p>
+</details>
+<details class="example">
+<summary>虚轴上存在极点的奈氏曲线与判稳</summary>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-09-17-24-12.png" /><br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-09-17-22-48.png" /></p>
+</details>
+<h4 id="413">4.1.3 特点<a class="headerlink" href="#413" title="Permanent link">&para;</a></h4>
+<ul>
+<li>由<strong>开环幅相</strong>曲线判断<strong>闭环系统稳定性</strong></li>
+<li>便于研究当系统结构参数改变时对系统稳定性的影响</li>
+<li>容易研究包含<strong>延迟环节</strong>的系统的稳定性</li>
+<li>
+<p>推广之，可用以分析某些非线性系统的稳定性</p>
+<blockquote>
+<p>可以研究包含延迟环节系统的稳定性</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="42">4.2 稳定程度 —— 稳定裕度<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>在稳定的基础上，判断稳定的程度，就是稳定裕度<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-09-17-27-45.png" /></p>
+<h4 id="421">4.2.1 概念<a class="headerlink" href="#421" title="Permanent link">&para;</a></h4>
+<p>两个频率：</p>
+<ul>
+<li>截止频率 <span class="arithmatex">\(\omega_c\)</span>: <span class="arithmatex">\(|G(j\omega_c)|=1\)</span>, <span class="arithmatex">\(L(\omega_c)=0\)</span></li>
+<li>相角交界频率 <span class="arithmatex">\(\omega_g\)</span>: <span class="arithmatex">\(\varphi(\omega_g)=-180^\circ\)</span></li>
+</ul>
+<p>两个裕量：</p>
+<ul>
+<li>幅值裕量（相角 180 时）:<ul>
+<li><span class="arithmatex">\(h=\frac{1}{|G_0(j\omega_g)|}\)</span></li>
+<li>单位时 dB 时，幅值裕度<span class="arithmatex">\(h(dB)=20lg\frac 1{|G(j\omega_g)|}=-20lg|G(j\omega_g)|\)</span></li>
+</ul>
+</li>
+<li>相角裕量（幅值 1 时）: <span class="arithmatex">\(\gamma=180^\circ+\theta(\omega_c)\)</span></li>
+</ul>
+<blockquote>
+<p>注：卢京潮讲的 相角 180 时，对应的是 <span class="arithmatex">\(\omega_g\)</span>, 而当时老师讲的是 <span class="arithmatex">\(\omega_x\)</span></p>
+</blockquote>
+<p>稳定裕度的物理意义：</p>
+<ul>
+<li><span class="arithmatex">\(\gamma\)</span> 系统在<strong>相角</strong>方面的稳定储备量，系统串联延时环节 <span class="arithmatex">\(e^{-\tau s}\)</span>，消耗相角储备</li>
+<li><span class="arithmatex">\(h\)</span> 系统在<strong>幅值</strong>方面的稳定储备量，系统串联比例放大环节，消耗幅值储备</li>
+</ul>
+<p>一个性能良好的控制系统，其：</p>
+<ul>
+<li>相位裕度应具有 45° 左右 (<span class="arithmatex">\(30\sim60\)</span> ) 的数值。</li>
+<li>
+<p>幅值裕度 <span class="arithmatex">\(h&gt;6dB\)</span> , <span class="arithmatex">\(h&gt;2\)</span> （单位不同）</p>
+<blockquote>
+<p><code>20*math.log(2,10) --&gt; 6.020599913279623</code></p>
+</blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>结构稳定</li>
+<li>条件稳定：参数影响稳定性 ⇒ 需要提出 <span class="arithmatex">\(\gamma,h\)</span> 衡量相对稳定性</li>
+<li>结构不稳定</li>
+</ul>
+<p>第二条忘记理由是啥了 ... 大概可以这样理解：结构稳定的系统，你怎么造都稳定；而有的系统你调整参数后可能就不稳定了，稳定裕量就是给你调整参数提供一定程度的自由.</p>
+</div>
+<h4 id="422">4.2.2 频域指标和时域动态性能指标<a class="headerlink" href="#422" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(\gamma, h \leftrightarrow \sigma\%, t_s\)</span></p>
+<ul>
+<li>一二阶典型系统：有现成的公式，但是没必要记，自己算很容易.</li>
+<li>高阶系统：<strong>经验估计公式 [胡寿松 P218]</strong><ul>
+<li><span class="arithmatex">\(\sigma\%=0.16+0.4(M_r-1)\times 100\%\)</span></li>
+<li><span class="arithmatex">\(t_s=\frac\pi {\omega_c}[2+1.5(M_r-1)+2.5(M_r-1)^2]\)</span></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">关于 <span class="arithmatex">\(M_r\)</span></p>
+<p><span class="arithmatex">\(M_r\)</span> 实际上是闭环的谐振峰值，（我根据听卢京潮老师的课以及对比开环闭环估计性能的公式得到的结论，课本上没有这么说过）, 如果用谐振峰值代入，就是闭环的近似计算公式.<br />
+<span class="arithmatex">\(M_r=M(\omega_r)\approx\frac{1}{\sin\gamma}\)</span> 用相角裕度计算，就是开环的近似估计公式.</p>
+<p>近似公式的使用条件：<span class="arithmatex">\(1\le M_r\le1.8,\quad 35^\circ\le \gamma\le 90^\circ\)</span> </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">二阶系统阻尼系数与相角裕度</p>
+<p><span class="arithmatex">\(\xi \approx 0.01 \gamma\)</span><br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-10-12-16-39.png" /><br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-10-12-16-53.png" /><br />
+<a href="https://www.zhihu.com/question/56007538/answer/147558663">自动控制里面，系统的相位裕度（PM）一定与阻尼比成正比吗？ - Smutkgg 的回答 - 知乎</a></p>
+</div>
+<p>低阶系统时域法更加简单；（频域的计算并不比时域的计算简单）<br />
+高阶系统频域法更简单。（时域要找主导极点，零点极点法）</p>
+<p>实际上，系统阶数比较低时，知道一个参数通过查各种图表就能够知道其他参数，这在工程上意义比较大，这里就不赘述了. 手算也能很快算出来。</p>
+<h4 id="423">4.2.3 求稳定裕度的思路总结<a class="headerlink" href="#423" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>相角裕度 <span class="arithmatex">\(\gamma\)</span> 的基本方法</p>
+<ul>
+<li><strong>精确解法</strong>: 根据<span class="arithmatex">\(|G(j\omega_c)|=1\)</span>求解高阶 <span class="arithmatex">\(\omega\)</span> 方程组 （计算器试根之类的）</li>
+<li>
+<p><strong>近似解法</strong>: 根据波特图 <span class="arithmatex">\(L(\omega)-\omega\)</span> ，找到幅值特性曲线与水平轴的交点<span class="arithmatex">\(\omega_c\)</span> 即为截止频率</p>
+<blockquote>
+<p>限于篇幅，详见"波特图相关计算"中的 <a href="#确定截止频率">确定截止频率</a></p>
+</blockquote>
+</li>
+<li>
+<p><strong>实际操作解法</strong>: 一般不会计算精确的截止频率，而是基于波特图计算.</p>
+<ul>
+<li>如果波特图已知，那么可以根据一定的几何关系列式求出截止频率，比如说等距等比，这个技巧性更高一些.</li>
+<li>另外，保底的方法是，<span class="arithmatex">\(\omega_c\)</span> 代入<span class="arithmatex">\(G(j\omega)\)</span>，把没有发挥作用的屏蔽掉，从而得到一个近似的截止频率. （用上面近似解法的思路）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>幅值裕度 <span class="arithmatex">\(h\)</span> 的基本方法</p>
+<p>由于相频特性曲线不好画，因此<span class="arithmatex">\(\omega_g\)</span>最好还是代数<strong>精确求解</strong>。</p>
+<ul>
+<li>
+<p>方法一：根据相角条件，解三角方程 <span class="arithmatex">\(\theta_1+\theta_2+\theta_3=\cdots\)</span></p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\arctan A+\arctan B=\arctan [\frac{A+B}{1-AB}]\)</span></p>
+<p>如果不太能理解的话，先把 2 个角度放一边，然后两边取 tan，是一样的</p>
+<p><img alt="" src="assets/%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Untitled%208.png" /></p>
+</li>
+<li>
+<p>化简之后呢，就是一个<span class="arithmatex">\(\arctan \varphi(\omega)=\theta\)</span> 一般来说都是 0°或者 90°</p>
+<p>0°说明分子是 0，90°说明分母是 0; 如果是一般的度数的话，只能用计算器计算反三角函数了.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>方法二：整理<span class="arithmatex">\(G(j\omega)=X+jY\)</span>，令<span class="arithmatex">\(Y=0\)</span> 解出来</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5">5 三频段理论<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>三频段理论<strong>分析对象是幅频特性曲线</strong>, 只适用于<strong>单位反馈的最小相位系统</strong></p>
+<ul>
+<li>三频段理论针对 <span class="arithmatex">\(L(\omega)\)</span></li>
+<li><strong>只有最小相位系统</strong>才能够仅由幅频<span class="arithmatex">\(L(\omega)\)</span>唯一确定相频<span class="arithmatex">\(\varphi(\omega)\)</span></li>
+<li>从而才能确定开环<span class="arithmatex">\(G(s)\)</span></li>
+<li><strong>只有单位负反馈</strong>才能够仅由开环 <span class="arithmatex">\(G(s)\)</span> 唯一确定 闭环 <span class="arithmatex">\(\Phi(s)\)</span></li>
+<li>从而才能够确定调节时间和超调量</li>
+</ul>
+<p>因此，<strong>频域法的串联矫正</strong>也是只适用于<strong>单位反馈最小相位系统</strong>.</p>
+<p>通过开环传递函数获得<strong>闭环的性能</strong></p>
+<ol>
+<li>低频段：开环增益和系统型别 ⇒ 稳态性能</li>
+<li>中频段：<span class="arithmatex">\(\omega_c, \gamma\)</span> ⇒ 系统稳定性 (<strong>最小相角系统相角裕量大于零就稳定</strong>) 和动态性能 (<span class="arithmatex">\(\omega_c, \gamma\rightarrow\sigma\%,t_s\)</span>)</li>
+<li>高频段：抗高频干扰能力<ol>
+<li>干扰也有低频的，这里只是说抗高频</li>
+<li>高频段低，直接得出<strong>开环抗高频</strong>干扰，进一步由于<span class="arithmatex">\(\Phi=\frac G{1+G} \xrightarrow{G\ll 1} G\)</span>, 得出<strong>闭环系统</strong>同样抗高频干扰能力强.</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>由于我们想让中频段斜率是 -20dB/dec, 可以反推低频段斜率为 -40dB/dec （从低频段到中频段有一个微分的转折）（如果低频段也是 -20dB/dec, 就说明没有转折，全靠一个积分环节撑到截止频率了）</p>
+</blockquote>
+<h2 id="6">6 系统闭环频率特性分析<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>系统闭环频率特性的绘制：<br />
+实际上，现在闭环频率特性很容易直接测出来，电脑描点作图.<br />
+有一种向量法，从开环传函画奈氏曲线，再画出闭环奈氏曲线（尼科尔斯图线）（非重点，感觉意义不大）</p>
+<p>闭环频率特性性能指标：<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2022-03-09-18-41-16.png" /></p>
+<blockquote>
+<p>注意对比<br />
+开环截止频率处，开环增益为 0dB<br />
+闭环带宽频率处，闭环增益为-3dB</p>
+</blockquote>
+<h2 id="7">7 上课笔记<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<hr />
+<p><strong>EXAM NOTIFICATION</strong><br />
+矫正涉及频率法<br />
+Nyquist 图，对数 Bode 图</p>
+<p>对数折线图与传递函数互相转化：</p>
+<ul>
+<li>通过传递函数画对数折线图</li>
+<li>通过折线图求传递函数时（先列出大致结构，占分的）。</li>
+</ul>
+<p>近似求开环截止角频率<span class="arithmatex">\(\omega_c\)</span>, 对应模为 1<br />
+<code>10 分大题</code> <strong>奈氏判据</strong><br />
+（半包围法，全包围法都可以，别忘了补充积分环节...)</p>
+<ul>
+<li>画 Nequist 曲线</li>
+<li>找起始点，终止点（最好写一下<span class="arithmatex">\(\angle G(0),\angle G(j\infty)\)</span>, 方便找分呐）</li>
+<li>求相角裕量和幅值裕量</li>
+<li>求相对稳定性</li>
+</ul>
+<p>（注意一下做题步骤）</p>
+<p>开环频率特性研究闭环系统性能，<code>填空选择题</code>（大的公式不考）<br />
+低频段，中频段，高频段的作用.<br />
+影响作用最大的是中频段，既决定了稳定性又决定了调节时间.</p>
+<p>有空的话，做下这道题<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2021-01-21-09-30-14.png" /></p>
+<hr />
+<p>之前的时域分析，输入信号是基本信号（阶跃信号等）.<br />
+频域分析，输入信号是不同频率的正弦信号.<br />
+采用传递函数类型为时间常数式/归一式，因为可以直观看到<span class="arithmatex">\(\omega\to 0\)</span>后的结果.</p>
+<blockquote>
+<p><code>tg^{-1}=arctan\\ tg=tan</code><br />
+波特 Bode<br />
+奈奎斯特 Nequist</p>
+</blockquote>
+<hr />
+<p>传递函数<span class="arithmatex">\(G(s)\)</span>直接把<span class="arithmatex">\(s\)</span>替换成<span class="arithmatex">\(j\omega\)</span>就是频率特性<span class="arithmatex">\(G(j\omega)\)</span><br />
+（如果不采用这种方式，就得列写微分方程然后得到频率特性，很麻烦）<br />
+具体证明可以见清华版教材，回来有兴趣可以补上.</p>
+<hr />
+<p><span class="arithmatex">\(G(j\omega)\)</span>倒数记为<span class="arithmatex">\(\hat{G}(j\omega)\)</span></p>
+<hr />
+<p>一个非常非常重要的结论：<br />
+<span class="arithmatex">\(G(s)\to KG(s)\)</span>幅频特性受影响（上下移动<span class="arithmatex">\(20lg(K)\)</span>), 相频特性不受影响.<br />
+画 Nequist 图时，K 变化图形形状不变，大小等比例扩大，因此可以推断出某一个点变化后的位置.<br />
+画波特图时，K 变化，幅频特性上下平移，相频特性不变.</p>
+<hr />
+<p>Nequist 曲线</p>
+<p>描点作图。取一些特殊点.<br />
+<span class="arithmatex">\(\omega=0,\infty\)</span><br />
+与实轴交点（可以使用相角，也可以使用虚部为零得到）, 与虚轴交点（可以使用实部为零得到）</p>
+<p><span class="arithmatex">\(\omega=0\)</span>时的相角需要进行修正，位于分子的环节提供正相角，位于分母的环节提供负相角，谁离原点进谁主导.</p>
+<hr />
+<p>波特图画法总结：</p>
+<p><strong>一个华点：</strong> 波特图横坐标为<span class="arithmatex">\(\mu\)</span>, 横坐标从 0 开始，意味着<span class="arithmatex">\(\mu=0,\omega=1\)</span>, 因此波特图实际上是<span class="arithmatex">\(\omega\)</span>从 1 开始！<br />
+截距就是 K 值：积分环节幅值为 1, 其他环节也忽略掉了！</p>
+<p><code>1B=20dB</code><br />
+开环截止角频率<span class="arithmatex">\(\omega_c\)</span>: <span class="arithmatex">\(L(\omega)\)</span>与<span class="arithmatex">\(\mu\)</span>轴的交点.</p>
+<p>振荡环节的近似：<br />
+<span class="arithmatex">\(\omega_n=1/T\)</span><br />
+<span class="arithmatex">\(\omega&lt;1/T,L(\omega)=0\)</span><br />
+<span class="arithmatex">\(\omega&gt;1/T,L(\omega)=-40lg\omega\)</span><br />
+两个修正：（二阶微分也有类似近似）<br />
+<span class="arithmatex">\(\omega=\omega_r,A=\frac{1}{2\xi\sqrt{1-\xi^2}}\)</span><br />
+<span class="arithmatex">\(\omega=\omega_n,A=\frac{1}{2\xi}\)</span></p>
+<blockquote>
+<p><span class="arithmatex">\(\omega_r=\omega_n\sqrt{1-2\xi^2}\)</span>  振荡环节最大幅值处频率<br />
+<span class="arithmatex">\(\omega_d=\omega_n\sqrt{1-\xi^2}\)</span>  振荡环节有阻尼震荡角频率</p>
+</blockquote>
+<p>复杂频率特性图：<br />
+标出所有的转折点，遇到转折点改变斜率.</p>
+<hr />
+<p>由波特图画 Nequist 曲线：<br />
+波特图确定特殊点（转折点，起始终止点，与坐标轴的交点<span class="arithmatex">\(\theta=0,90,180,270\)</span>)<br />
+Nequist 图描点连线.<br />
+<strong>MyOpinion:</strong> 一个总结出来的小技巧，描点连线中间线的变化趋势与圆相近，不要下意识近似直线地相连. 比如说两点角度是<span class="arithmatex">\(-90-+90\)</span>, 那么连线的斜率变化就像单位圆<span class="arithmatex">\(-90-+90\)</span>.</p>
+<hr />
+<p>由<span class="arithmatex">\(L(\omega)\)</span>求<span class="arithmatex">\(G(s)\)</span> <strong>考试必考</strong></p>
+<p>从图上的转折点以及斜率变化确定<span class="arithmatex">\(G(s)\)</span>的基本形式（有几个什么环节）, 然后可以先用<span class="arithmatex">\(\omega_1,\omega_2,...\)</span>列出<span class="arithmatex">\(G(s)\)</span><br />
+（注意，当斜率变化 40dB 时，如果没有修正，当做两个一阶，有修正，为二阶震荡/微分）<strong>列式子占一半分</strong><br />
+根据图上标出的点求对应的<span class="arithmatex">\(\omega\)</span>, 一个很好的技巧是，列几何关系（有时候会需要延长线）,<span class="arithmatex">\((\lg\omega-\lg x)*20=h\)</span></p>
+<hr />
+<p>Nequist 稳定判据 <strong>考试必考</strong></p>
+<ul>
+<li>需要根据开环传递函数画出<span class="arithmatex">\(L(\omega),\theta(\omega)\)</span>大致曲线（注意这里不需要精确求每个点的具体数值，只需要能够得到 Nequist 曲线的大致形状就可以了）</li>
+<li>画 Nequist 曲线<ul>
+<li>遇到虚轴存在开环极点时，需要绕过去，使用广义 Nequist 稳定判据. 往左往右绕都可以，往左绕的话，绕过的那个极点就被算在右半平面，往右绕，绕过的那个极点就被算在左半平面.</li>
+</ul>
+</li>
+<li>在画出大致形状正确的 Nequist 曲线（相频特性不出错）后，看一看关键点即满足<span class="arithmatex">\(\theta(\omega)=0\)</span>的<span class="arithmatex">\(\omega\)</span>所对应的 A, 也就是找 Nequist 曲线与实轴交点.<ul>
+<li>需要注意<span class="arithmatex">\(tg^{-1}(k\omega)\)</span>是角度，在列出幅角满足的关系式后，可以两边取 tan 试一试求.<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2020-11-22-18-53-05.png" /></li>
+</ul>
+</li>
+<li>因为需要判断 Nequist 曲线绕-1 点转的圈数，所以上一步就很重要，看-1 在圈里面还是圈外面.</li>
+<li>理论依据是，K 变化不影响相频特性，相同相角对应相同<span class="arithmatex">\(\omega\)</span>,K 变化图形等比例变化.</li>
+</ul>
+<hr />
+<p>总结：<span class="arithmatex">\(\theta(\omega_x)=180^\circ,A(\omega_c)=1\)</span></p>
+<p><strong>相角穿越频率</strong><span class="arithmatex">\(\omega_x\)</span><br />
+开环频率特性的相角为-180°时对应的角频率。<br />
+<span class="arithmatex">\(\theta(\omega_x)=-180^\circ\)</span><br />
+对应波特图<span class="arithmatex">\(\theta(\omega)\)</span>图像中<span class="arithmatex">\((2k+1)\pi\)</span>线的交点<br />
+对应 Nequist 曲线中与负实轴的交点.</p>
+<ol>
+<li><span class="arithmatex">\(\theta=\sum tg^{-1}\)</span></li>
+<li><span class="arithmatex">\(G_0(j\omega)=X+jY\)</span>令 Y=0</li>
+</ol>
+<p><strong>开环截止角频率</strong><span class="arithmatex">\(\omega_c\)</span>（似乎又叫幅值穿越频率）<br />
+开环频率特性的模为 1 时对应的角频率。<br />
+<span class="arithmatex">\(L(\omega_c)=0,A(\omega_c)=1\)</span><br />
+对应波特图<span class="arithmatex">\(L(\omega)\)</span>中与横轴的交点.（使用对数折线图可以近似求解）<br />
+对应 Nequist 曲线中与单位圆的交点.</p>
+<p>阶数不太高时，<span class="arithmatex">\(|G(j\omega)|=1\)</span>, 解 s 的 n 次方程<br />
+如果阶数到达 3 阶或以上，可通过 Bode 图求近似<span class="arithmatex">\(\omega_c\)</span>（几何关系<span class="arithmatex">\(\Delta h=k\Delta \mu\)</span>)</p>
+<blockquote>
+<p>如果参数 K 不确定，则<span class="arithmatex">\(\omega_c\)</span>所在区间并不确定，所以需要分情况讨论. 然后求出来后需要判断结果是否在这个区间里面，进行排除之类的.</p>
+</blockquote>
+<p><strong>ATTENTION:</strong> 上面这两个量不一定总是能求到，例如<span class="arithmatex">\(\omega_x\)</span>处与负实轴相交，但实际上 Nequist 曲线可能并不交负实轴，此时可以画图，如果趋向无穷时趋向 0 点，则可以认为<span class="arithmatex">\(\omega_x=\infty\)</span>,<span class="arithmatex">\(h=\infty\)</span>.<br />
+所以还是先画图 Nyquist, 再求.</p>
+<hr />
+<p>稳定裕量</p>
+<ul>
+<li>幅值裕量（相角 180 时）:<span class="arithmatex">\(h=\frac{1}{|G_0(j\omega_x)|}\)</span><blockquote>
+<p>单位时 dB 时，幅值裕度<span class="arithmatex">\(hdB=-20lg|G(j\omega_x)|\)</span></p>
+</blockquote>
+</li>
+<li>相角裕量（幅值 1 时）:<span class="arithmatex">\(\gamma=180^\circ+\theta(\omega_c)\)</span></li>
+</ul>
+<p>这两个量在 Nequist 曲线上的体现<br />
+这两个量在 Bode 图上的体现<br />
+理解就好了。</p>
+<p>判断稳定裕量前需要确定系统稳定，不然这两个量没有意义. 也无法根据这两个量判断稳定性。（不过 PPT 上说当 P=0 时可以判断稳定性）</p>
+<p><strong>题型拓展：</strong><br />
+如果<strong>相角裕量</strong>为 20, 求此时的 k（或者其他的参数）:<span class="arithmatex">\(\gamma=180+\angle\theta(\omega_c)=20\)</span></p>
+<blockquote>
+<p>理论上有两种方法<br />
+第一种<span class="arithmatex">\(|G(j\omega_c)|=1\)</span><strong>求出<span class="arithmatex">\(\omega_c\)</span></strong>, 然后代入<span class="arithmatex">\(\gamma=180+\angle\theta(\omega_c)=20\)</span>解关于 k 的方程.<br />
+第二种先求<span class="arithmatex">\(\gamma=180+\angle\theta(\omega_c)=20\)</span><strong>解出<span class="arithmatex">\(\omega_c\)</span></strong>, 之后代入模的公式求出 k <span class="arithmatex">\(|G(j\omega)|_{\omega=\omega_c}=1\)</span><br />
+不过第二种方法应该是更简单一些，因为一些积分环节是恒定角度，这样解方程阶次低一些.</p>
+</blockquote>
+<p>求<strong>临界稳定</strong>的时候的 K:Nequist 曲线过-1 点，只需要<span class="arithmatex">\(A(\omega_x)=0\)</span>or<span class="arithmatex">\(\theta(\omega_c)=180\)</span></p>
+<hr />
+<p>结构稳定：无论当前参数如何改变，系统永远稳定<br />
+结构不稳定：无论当前参数如何改变，系统永远不稳定<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2020-12-01-15-51-32.png" /></p>
+<hr />
+<p>开环频率特性研究闭环系统性能<br />
+<strong>考试出填空理解题目</strong>, 比如说对动态性能影响最重要的是中频段，低中高频段各影响什么，高频段反映抗干扰能力，低频段影响稳态误差.</p>
+<p>稳定性：Bode 图/Nequist 判据<br />
+稳态误差：稳态误差与开环增益有关 (<span class="arithmatex">\(\frac{1}{1+K} or \frac{1}{K}\)</span>), 从 Bode 图低频段可以求出 K, 从而获得稳态误差（低频段影响响应收尾阶段）</p>
+<ul>
+<li>低频段：积分环节越多，K 越大，稳态误差越小（稳态性能越好）</li>
+<li>中频段：斜率应该是-20dB(<code>选择题</code>) 相角裕量越小，超调量越大，稳定性越差，动态性能越差.</li>
+<li>高频段</li>
+</ul>
+<p>影响作用最大的是：中频段. 既决定了稳定性又决定了调解时间.<br />
+<img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2021-01-21-10-31-46.png" /></p>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2021-01-21-10-23-42.png" /></p>
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2021-01-21-11-49-03.png" /></p>
+<hr />
+<p>Nequist 曲线中可以读取到的信息：<br />
+稳定性：绕-1 的圈数<br />
+起点：从常数开始（没有微积分环节）, 从无穷远点开始（有积分环节）, 从零点开始（有微分环节）（注意，仅根据曲线完全可以判断出有没有积分环节有几个积分环节）</p>
+<blockquote>
+<p>V: 积分数<br />
+P: 微分数</p>
+</blockquote>
+<hr />
+<p>关于使用等效开环传函求 Nequist 判据</p>
+<p>为什么可以？...TO BE CONTINUED</p>
+<hr />
+<p>最小相角系统<br />
+对于闭环系统，如果它的<strong>开环传递函数</strong>极点和零点的实部<strong>都小于或等于零</strong>，则称它是最小相位系统，如果开环传递函数中有正实部的零点或极点，或有延迟环节，则称系统是非最小相位系统。因为延迟环可以用零点和极点的形式近似。</p>
+<hr />
+<p>运算技巧总结</p>
+<p>复数取模运算<br />
+复数求相角运算（求<span class="arithmatex">\(z=x+yj\)</span>相角时<span class="arithmatex">\(\arctan\frac{y}{x}\)</span>, 注意进行一定的转换，因为<span class="arithmatex">\(\arctan\)</span>是锐角）</p>
+<p>复数分子有理化（一般分子阶数更低，因此分子有理化更加方便）, 求<span class="arithmatex">\(\omega_x\)</span></p>
+<p><span class="arithmatex">\(\tan90^\circ=\infty\)</span><br />
+<span class="arithmatex">\(\frac{\infty+0.5\omega}{1-\infty 0.5\omega}=\frac{1+\frac{0.5\omega}{\infty}}{\frac{1}{\infty}-0.5\omega}=\frac{1}{-0.5\omega}\)</span></p>
+<p>在实际计算时，可以采取各种近似方法，只要最终结果与答案接近就可以.（不用局限于 PPT 上讲过的）高阶系统允许存在误差.</p>
+<p>例如在求相角裕度时，<br />
+使用波特图折线图近似求解<span class="arithmatex">\(\omega_c\)</span><br />
+然后代入<span class="arithmatex">\(\gamma=180+\angle G(j\omega_c)\)</span><br />
+在求<span class="arithmatex">\(\angle G(j\omega_c)\)</span>时，可以和折线图一样忽略掉<span class="arithmatex">\(\omega_c\)</span>右边的环节，因为折线图中这个环节转折点之前都认为这个环节可以忽略.<br />
+如果列完式子之后<span class="arithmatex">\(\omega\)</span>阶次还是三次及以上没法求，可以将<span class="arithmatex">\(\omega_c\)</span>离得远的环节给固定成 90 度相角之类的（例如<span class="arithmatex">\(jT\omega+1\)</span>中，<span class="arithmatex">\(T\omega\gg1\)</span>,10 倍差距就可以忽略掉实部了）</p>
+<hr />
+<p><img alt="" src="assets/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95/2020-12-01-23-01-31.png" /></p>
+<hr />
+<p>开环幅频特性 A<br />
+闭环幅频特性 M</p>
+<hr />
+<p>频域性能指标与时域性能指标的关系</p>
+<ul>
+<li>时域分析：闭环传递函数，二阶系统（高阶通过选取主导极点，简化为二阶）</li>
+<li>频域分析：开环传递函数，高阶系统</li>
+</ul>
+<p>(<strong>考试不考调节时间等的公式，但是考研会考</strong>)</p>
+<p><span class="arithmatex">\(G(s)\to\omega_c\to\gamma(35^\circ-90^\circ)\to t_s,\sigma\)</span><br />
+<span class="arithmatex">\(t_s,\sigma\)</span>有对应的近似公式，但是如果<span class="arithmatex">\(\gamma\)</span>脱离了上面的范围，近似公式的误差就会很大.</p>
+<hr />
+<p>闭环传函通常没有积分环节</p>
+<p><span class="arithmatex">\(G(s)=\frac{Ka}{s^{\gamma}b}\)</span><br />
+<span class="arithmatex">\(\phi(s)=\frac{Ka}{s^{\gamma}b+Ka}\)</span><br />
+通常开环传函分母阶数更高，这意味着 K 不会是一个 s 的系数，因为 s 可以被提走.</p>
+<p><span class="arithmatex">\(\omega_c\uparrow\)</span>频域宽，更容易再现信号<span class="arithmatex">\(t_s\downarrow\)</span></p>
+<hr />
+<p>做题小总结：</p>
+<p><strong>ATTENTION:</strong> 题目给的是开环还是闭环！<br />
+P227 5-4</p>
+<p>存在延时环节的题目<span class="arithmatex">\(e^{-\tau s}\)</span>只改变相位不改变幅值.<br />
+<span class="arithmatex">\(G_0(s)=\frac{2e^{-\tau s}}{s+1}\)</span></p>
+<ul>
+<li>如果<span class="arithmatex">\(\tau=1,\gamma=?\)</span></li>
+<li><span class="arithmatex">\(\phi(s)\)</span>稳定时，求<span class="arithmatex">\(\tau\)</span>的范围</li>
+<li><span class="arithmatex">\(G_0(s)=\frac{Ke^{-\tau s}}{s+1}\)</span> 求 K 的稳定范围</li>
+</ul>
+<p>劳斯判据判断右极点数</p>
+<hr />
+<p><strong>考试</strong>不考出射点入射点出射角入射角</p>
+<hr />
+<p>转折频率的计算</p>
+<p>需要注意<span class="arithmatex">\(\omega\)</span>是角频率，但是我们一般在应用层面说频率的时候是指<span class="arithmatex">\(f(Hz)\)</span>,<span class="arithmatex">\(\omega=2\pi f\)</span>可以进行转化.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>关于为什么直接把 s 替换成 <span class="arithmatex">\(j\omega\)</span> 就可以... 似乎有证明的. 总之，频率特性可由传递函数直接获得.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>s 平面，G 平面是卢京潮老师讲课时经常使用的分析方法. 但是我觉得，不依靠这 s 平面也能进行分析，就单纯地把传递函数化成零极点式，然后逐个当作复数分析角度即可（幅值都是从 1 到无穷）.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="%E7%AC%AC04%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B9%E8%BD%A8%E8%BF%B9%E6%B3%95.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 第四章 线性系统的根轨迹法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              第四章 线性系统的根轨迹法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="%E7%AC%AC06%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9F%AB%E6%AD%A3%E6%96%B9%E6%B3%95.html" class="md-footer__link md-footer__link--next" aria-label="Next: 第六章 线性系统的校正方法" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              第六章 线性系统的校正方法
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

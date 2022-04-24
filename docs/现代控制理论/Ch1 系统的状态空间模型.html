@@ -1,0 +1,1197 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>CH1. 系统的状态空间模型 - 控制理论笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ch1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="控制理论笔记" class="md-header__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            控制理论笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CH1. 系统的状态空间模型
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      README
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/index.html" class="md-tabs__link">
+        学科理解
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link md-tabs__link--active">
+        现代控制理论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/index.html" class="md-tabs__link">
+        经典控制理论
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="控制理论笔记" class="md-nav__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    控制理论笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        README
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/index.html">学科理解</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="学科理解" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          学科理解
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/%E6%9D%8E%E5%9B%BD%E6%9D%B0%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E8%8B%A5%E5%B9%B2%E8%AE%A4%E8%AF%86%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        李国杰：有关人工智能的若干认识问题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="index.html">现代控制理论</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="现代控制理论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          现代控制理论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          CH1. 系统的状态空间模型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B.html" class="md-nav__link md-nav__link--active">
+        CH1. 系统的状态空间模型
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 状态和状态空间模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2 建立状态空间模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3 线性定常系统状态方程的解
+  </a>
+  
+    <nav class="md-nav" aria-label="3 线性定常系统状态方程的解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 状态转移矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dot-xax" class="md-nav__link">
+    3.2 齐次解 \(\dot X=AX\)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 非齐次解
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4 相图 ⇋ 特征值 ⇋ 稳定性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-xthat-x" class="md-nav__link">
+    5 系统线性变换、等价变换、状态变换 \(X=T\hat X\)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ch2%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%83%BD%E6%8E%A7%E6%80%A7%E5%92%8C%E8%83%BD%E8%A7%82%E6%80%A7.html" class="md-nav__link">
+        CH2. 线性系统的能控性和能观性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ch3%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7.html" class="md-nav__link">
+        CH3. 系统的稳定性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ch4%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88.html" class="md-nav__link">
+        CH4. 线性系统综合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ch5%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA.html" class="md-nav__link">
+        Ch5. 非线性控制理论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ch6%20%E5%85%B6%E4%BB%96.html" class="md-nav__link">
+        CH6. 其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/index.html">经典控制理论</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="经典控制理论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          经典控制理论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC01%E7%AB%A0%20%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E7%9A%84%E4%B8%80%E8%88%AC%E6%A6%82%E5%BF%B5.html" class="md-nav__link">
+        第一章 自动控制的一般概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC02%E7%AB%A0%20%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        第二章 控制系统的数学模型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC03%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95.html" class="md-nav__link">
+        第三章 线性系统的时域分析法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC04%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B9%E8%BD%A8%E8%BF%B9%E6%B3%95.html" class="md-nav__link">
+        第四章 线性系统的根轨迹法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95.html" class="md-nav__link">
+        第五章 线性系统的频域分析法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC06%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9F%AB%E6%AD%A3%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        第六章 线性系统的校正方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC07%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%AB%E6%AD%A3.html" class="md-nav__link">
+        第七章 线性离散系统的分析与矫正
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC08%E7%AB%A0%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90.html" class="md-nav__link">
+        第八章 非线性控制系统分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC09%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%BC%E5%90%88.html" class="md-nav__link">
+        第九章 线性系统的状态空间分析与综合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%AC%AC10%E7%AB%A0%20%E5%8A%A8%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        第十章 动态系统的最优控制方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA.html" class="md-nav__link">
+        经典控制理论
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 状态和状态空间模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2 建立状态空间模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3 线性定常系统状态方程的解
+  </a>
+  
+    <nav class="md-nav" aria-label="3 线性定常系统状态方程的解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 状态转移矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dot-xax" class="md-nav__link">
+    3.2 齐次解 \(\dot X=AX\)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 非齐次解
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4 相图 ⇋ 特征值 ⇋ 稳定性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-xthat-x" class="md-nav__link">
+    5 系统线性变换、等价变换、状态变换 \(X=T\hat X\)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="ch1">CH1. 系统的状态空间模型<a class="headerlink" href="#ch1" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#ch1">CH1. 系统的状态空间模型</a><ul>
+<li><a href="#1">1 状态和状态空间模型</a></li>
+<li><a href="#2">2 建立状态空间模型</a></li>
+<li><a href="#3">3 线性定常系统状态方程的解</a><ul>
+<li><a href="#31">3.1 状态转移矩阵</a></li>
+<li><a href="#32-dot-xax">3.2 齐次解 \(\dot X=AX\)</a></li>
+<li><a href="#33">3.3 非齐次解</a></li>
+</ul>
+</li>
+<li><a href="#4">4 相图 ⇋ 特征值 ⇋ 稳定性</a></li>
+<li><a href="#5-xthat-x">5 系统线性变换、等价变换、状态变换 \(X=T\hat X\)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="1">1 状态和状态空间模型<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>线性系统状态空间模型可由积分器、加法器、比例器组成</p>
+<div class="admonition summary">
+<p class="admonition-title">本页之后用到的一些概念总结</p>
+<p>友矩阵：大概长这个样子，<span class="arithmatex">\(\begin{bmatrix}0 &amp; &amp;  I\\ -a_n &amp; \cdots &amp; -a_1\end{bmatrix}\)</span>, 最后一行可以直接写出该矩阵特征多项式.<br />
+对角矩阵：略<br />
+约当标准型：有的矩阵不能相似对角化，但是可以化为约当型</p>
+<p>能控标准型：A 为友矩阵，B 最后一行为 1<br />
+能观标准型：A 为友矩阵，C 最后一列为 1</p>
+</div>
+<h2 id="2">2 建立状态空间模型<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>机理建模：根据系统的物理机理建立对象的数学模型</p>
+<ul>
+<li>弹簧 <span class="arithmatex">\(F=kx\)</span></li>
+<li>阻尼 <span class="arithmatex">\(F=k\dot x=kv\)</span></li>
+</ul>
+<pre class="mermaid"><code>graph LR
+  A["微分方程（组）"] --&gt;|1, 3| B[状态空间方程];
+  A --&gt; |2| C["传递函数（阵）"];
+  C --&gt; |4| B;
+</code></pre>
+<ol>
+<li>
+<p><strong>机理建模</strong>: 通过物理机理列写微分方程组后，选取合适的状态变量（一般选择储能信号，例如电容电压）, 之后整理成<span class="arithmatex">\(\dot {x_1}=f(\cdots)\)</span>的格式，最后写成状态方程形式<br />
+    ✨这种方法获得的状态变量比较直观，可以单独列每个元件的数学表达式，不用整理成 <code>3</code> 那样的微分方程<br />
+    不过状态空间方程<strong>不是任何一类标准的形式</strong>.</p>
+</li>
+<li>
+<p>对于 SISO 的单微分方程，拉氏变换之后即可整理成传递函数</p>
+</li>
+<li>
+<p>由<strong>高阶常微分方程</strong>建立状态空间模型：<span class="arithmatex">\(y^{(n)}+a_1y^{(n-1)}+\cdots+a_ny=b_0u^{(n)}+\cdots+b_nu\)</span></p>
+<ol>
+<li>微分方程中不含输入量的导数项</li>
+<li>微分方程中含包含输入量的导数项</li>
+</ol>
+<p>✨此方法获得的 A 为友矩阵，B 最后一行为 b, C 第一列为 1. <strong>不是</strong>能控/能观标准型<br />
+但是此方法获得的系统一定是能控的！</p>
+</li>
+<li>
+<p><strong>传递函数的实现</strong>: 见 <a href="Ch2%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%83%BD%E6%8E%A7%E6%80%A7%E5%92%8C%E8%83%BD%E8%A7%82%E6%80%A7.html#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E9%98%B5%E7%9A%84%E5%AE%9E%E7%8E%B0%E9%97%AE%E9%A2%98">这里</a></p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">输入含导数项的状态空间方程的小总结</p>
+<ol>
+<li>把方程列成标准形式，注意缺少的项要补齐，比如说右侧输入项与输出项同阶次的.</li>
+<li>标好 a,b 都是什么.</li>
+<li>n 阶方程，状态方程也是 n 阶的（可以先画出状态方程的大致形状）</li>
+<li>先求<span class="arithmatex">\(\beta_0\sim\beta_n\)</span></li>
+<li>再求<span class="arithmatex">\(x_1\sim x_{n+1}\)</span> 其中 <span class="arithmatex">\(x_{n+1}\)</span> 只是占个位，不是状态变量</li>
+<li>再写出<span class="arithmatex">\(\dot x_1\sim \dot x_{n}\)</span> 其中 由于不知道 <span class="arithmatex">\(x_{n+1}\)</span>, <span class="arithmatex">\(\dot x_{n}\)</span>通过记额外的公式写出来.</li>
+<li>得出结果</li>
+</ol>
+</div>
+<div class="admonition cite">
+<p class="admonition-title">不同形态状态空间方程之间的互相转换</p>
+<p>这个太多了。. 就不总结了...<br />
+可以看约当标准型部分：其他形式变约当标准型. <a href="#把状态空间方程化成约当标准型">把状态空间方程化成约当标准型</a><br />
+传递函数的实现问题</p>
+</div>
+<h2 id="3">3 线性定常系统状态方程的解<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>
+<figure><img src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/IMG_20220314_111504.jpg" title="求输出的方法总结" /><figcaption>求输出的方法总结</figcaption>
+</figure>
+</p>
+<h3 id="31">3.1 状态转移矩阵<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<ol>
+<li><span class="arithmatex">\(\phi(0)=I\)</span> 时间不变，状态不转移（选取的状态不能突变）</li>
+<li>
+<p>组合性质 <span class="arithmatex">\(\phi(t_2)=\phi(t_2-t_1)\phi(t_1)\)</span><br />
+<span class="arithmatex">\(X(t_2)=\phi(t_2-t_1)\phi(t_1)X(0)\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\([\phi(t)]^{-1}=\phi(-t)\)</span></p>
+</li>
+</ol>
+<p>求状态转移矩阵的方法</p>
+<ol>
+<li>直接展开级数（不推荐，拟合太难</li>
+<li>
+<p>如果是对角标准型，则对角线上的 <span class="arithmatex">\(\lambda\)</span> 变成 <span class="arithmatex">\(e^{\lambda t}\)</span><br />
+    如果是约当标准型，则....<br />
+    可以把 A 变换为上述标准型</p>
+</li>
+<li>
+<p>拉氏变换法 <span class="arithmatex">\(L^{-1}\{(sI-A)^{-1}\}\)</span></p>
+</li>
+<li>凯莱-哈密顿定理（这个我不会~）</li>
+</ol>
+<h3 id="32-dot-xax">3.2 齐次解 <span class="arithmatex">\(\dot X=AX\)</span><a class="headerlink" href="#32-dot-xax" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(X(t)=e^{At}X_0\)</span></p>
+<ol>
+<li><span class="arithmatex">\(e^{At}\)</span> 可以幂级数展开 （不推荐）</li>
+<li>拉氏变换求解 <span class="arithmatex">\(L^{-1}\{(sI-A)^{-1}\}\)</span></li>
+</ol>
+<p>渐近稳定，A 的特征值均具有负实部</p>
+<h3 id="33">3.3 非齐次解<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<ol>
+<li>时域求卷积<span class="arithmatex">\(x(t)=\int_0^te^{A\tau}u(t-\tau)d\tau=\int_0^te^{A(t-\tau)}u(\tau)d\tau\)</span>. （注意这个形式比较灵活，卷积位置可交换）</li>
+<li>拉氏变换 <span class="arithmatex">\(X(s)=(sI-A)^{-1}[X_0+BU(s)]\)</span>.</li>
+</ol>
+<p>其实有时候第一个方法比较简单。<br />
+比如说输入为阶跃信号，那么 <span class="arithmatex">\(x(t)=\int_0^te^{A\tau}u(t-\tau)d\tau=\int_0^te^{A\tau}d\tau\)</span> , 只需要进行积分即可. 拉氏变换需要分解因式再反变换.</p>
+<p>还比如说输入是一个分段函数，第二个方法可能就会非常复杂，第一个只需要分段求积分.</p>
+<h2 id="4">4 相图 ⇋ 特征值 ⇋ 稳定性<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.bilibili.com/video/BV1ex411g7t3?spm_id_from=333.999.0.0">【Advanced 控制理论】3_Phase Portrait_相图_相轨迹_哔哩哔哩_bilibili</a></p>
+<p>相图，似乎当初经典控制理论课程中讲过，这里就不赘述了..</p>
+<p>对于下图简单的情形：只有 2 个状态，且微分方程简单如下，通过分类讨论能够得出可能的情况.</p>
+<p>source: 源；saddle: 鞍；sink: to fall or drop to a lower place or level</p>
+<p>当且仅当 a, d 都小于 0 的时候，系统才是稳定的，<span class="arithmatex">\(t\to\infty\)</span>  时，<span class="arithmatex">\(x_1,x_2\to0\)</span></p>
+<p><img alt="" src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/Untitled.png" /></p>
+<p>通过线性变换<span class="arithmatex">\(P^{-1}AP=\Lambda\)</span>, 能够把一般的状态空间<span class="arithmatex">\(\dot X=AX\)</span>变换成上述的简单情况<span class="arithmatex">\(\dot Y=\Lambda Y\)</span>. 因此易得，原状态空间的相轨迹也是由 a, d 决定的. 而 a, d 其实就是状态矩阵 A 的特征值. AKA, 特征值决定系统稳定性.</p>
+<p><img alt="" src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/Untitled%201.png" /></p>
+<p>对于更复杂的系统，相轨迹也更加复杂，这里就不记录了，可以见原视频. 总之都由系统的特征值有关.</p>
+<p><img alt="" src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/Untitled%202.png" /></p>
+<p>关于状态矩阵特征值和传递函数极点，可以用下面这俩理解</p>
+<ul>
+<li>求特征值 <span class="arithmatex">\(|\lambda I-A|\)</span>.</li>
+<li>求传递函数 <span class="arithmatex">\(C(sI-A)^{-1}B=C\frac{adj (sI-A)}{|sI-A|}B\)</span></li>
+</ul>
+<h2 id="5-xthat-x">5 系统线性变换、等价变换、状态变换 <span class="arithmatex">\(X=T\hat X\)</span><a class="headerlink" href="#5-xthat-x" title="Permanent link">&para;</a></h2>
+<p><span class="arithmatex">\(\hat A=T^{-1}AT\)</span>, <span class="arithmatex">\(\hat B=T^{-1}B\)</span>, <span class="arithmatex">\(\hat C=CT\)</span></p>
+<ol>
+<li>代数上等价，输入输出特性不变</li>
+<li>特征值不变，特征多项式系数不变，极点不变</li>
+<li>传递函数阵不变</li>
+<li>能控性能观性不变</li>
+</ol>
+<blockquote>
+<p>线性定常系统特征值对线性变换具有不变性，因此线性变换 (<span class="arithmatex">\(T\)</span>可逆的变换）是等价变换<br />
+<strong>上述性质默认前提为线性系统</strong>（非线性系统不知道）</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">广义特征向量</p>
+<p>限于时间精力，这里就不详细解释了..<br />
+<img alt="" src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/2022-03-14-10-43-50.png" /></p>
+</div>
+<p>把状态空间方程化成约当标准型：<a id="把状态空间方程化成约当标准型"></a></p>
+<ol>
+<li>特征值都不同⇒对角标准型 （参考线性代数相似对角化，对角线上是特征值）</li>
+<li>特征值有重根⇒约当标准型 （广义特征向量）</li>
+</ol>
+<p>
+<figure><img src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/2022-03-14-12-32-35.png" /><figcaption>状态空间方程化成约当标准型</figcaption>
+</figure>
+</p>
+<div class="admonition note">
+<p class="admonition-title">友矩阵</p>
+<p>大概长这个样子，<span class="arithmatex">\(\begin{bmatrix}0 &amp; &amp;  I\\ -a_n &amp; \cdots &amp; -a_1\end{bmatrix}\)</span><br />
+<img alt="" src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/2022-03-14-10-28-50.png" /><br />
+很多标准形式的状态矩阵都是友矩阵。</p>
+</div>
+<p>能控标准型化为约当标准型：<br />
+友矩阵特征值互异时，将友矩阵变换成对角线阵的变换矩阵恰为<strong>范德蒙矩阵</strong>.</p>
+<div class="arithmatex">\[
+\Lambda=\tilde{A}=P^{-1}AP=
+\begin{bmatrix}
+    1 &amp; 1 &amp; 1 \\
+    \lambda_1 &amp; \lambda_2 &amp; \lambda_3 \\
+    \lambda_1^2 &amp; \lambda_2^2 &amp; \lambda_3^2 \\
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+0 &amp; &amp;  I\\ -a_n &amp; \cdots &amp; -a_1
+\end{bmatrix}
+\begin{bmatrix}
+    1 &amp; 1 &amp; 1 \\
+    \lambda_1 &amp; \lambda_2 &amp; \lambda_3 \\
+    \lambda_1^2 &amp; \lambda_2^2 &amp; \lambda_3^2 \\
+\end{bmatrix}
+\]</div>
+<p>作用：<span class="arithmatex">\(\phi(t)=e^{At}=e^{P\tilde{A}P^{-1}t}=Pe^{\tilde{A}t}P^{-1}\)</span><br />
+其中<span class="arithmatex">\(e^{\tilde{A}t}\)</span>可以直接写出来（对角线取指数）, <span class="arithmatex">\(P\)</span>也可以由特征值直接写出来.<br />
+有些情况下，可以简化求线性定常系统状态方程的解<br />
+<figure><img src="assets/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B/2022-03-14-10-41-21.png" /><figcaption>计算举例</figcaption>
+</figure>
+</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 现代控制理论" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              现代控制理论
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="Ch2%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%83%BD%E6%8E%A7%E6%80%A7%E5%92%8C%E8%83%BD%E8%A7%82%E6%80%A7.html" class="md-footer__link md-footer__link--next" aria-label="Next: CH2. 线性系统的能控性和能观性" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              CH2. 线性系统的能控性和能观性
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

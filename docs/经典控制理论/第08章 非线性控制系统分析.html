@@ -1,0 +1,1158 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>第八章 非线性控制系统分析 - 控制理论笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="控制理论笔记" class="md-header__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            控制理论笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第八章 非线性控制系统分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      README
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/index.html" class="md-tabs__link">
+        学科理解
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/index.html" class="md-tabs__link">
+        现代控制理论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link md-tabs__link--active">
+        经典控制理论
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="控制理论笔记" class="md-nav__button md-logo" aria-label="控制理论笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    控制理论笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        README
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/index.html">学科理解</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="学科理解" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          学科理解
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AD%A6%E7%A7%91%E7%90%86%E8%A7%A3/%E6%9D%8E%E5%9B%BD%E6%9D%B0%EF%BC%9A%E6%9C%89%E5%85%B3%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E8%8B%A5%E5%B9%B2%E8%AE%A4%E8%AF%86%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        李国杰：有关人工智能的若干认识问题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/index.html">现代控制理论</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="现代控制理论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          现代控制理论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch1%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        CH1. 系统的状态空间模型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch2%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%83%BD%E6%8E%A7%E6%80%A7%E5%92%8C%E8%83%BD%E8%A7%82%E6%80%A7.html" class="md-nav__link">
+        CH2. 线性系统的能控性和能观性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch3%20%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7.html" class="md-nav__link">
+        CH3. 系统的稳定性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch4%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88.html" class="md-nav__link">
+        CH4. 线性系统综合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch5%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA.html" class="md-nav__link">
+        Ch5. 非线性控制理论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/Ch6%20%E5%85%B6%E4%BB%96.html" class="md-nav__link">
+        CH6. 其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="index.html">经典控制理论</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="经典控制理论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          经典控制理论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC01%E7%AB%A0%20%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E7%9A%84%E4%B8%80%E8%88%AC%E6%A6%82%E5%BF%B5.html" class="md-nav__link">
+        第一章 自动控制的一般概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC02%E7%AB%A0%20%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        第二章 控制系统的数学模型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC03%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95.html" class="md-nav__link">
+        第三章 线性系统的时域分析法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC04%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B9%E8%BD%A8%E8%BF%B9%E6%B3%95.html" class="md-nav__link">
+        第四章 线性系统的根轨迹法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC05%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90%E6%B3%95.html" class="md-nav__link">
+        第五章 线性系统的频域分析法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC06%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9F%AB%E6%AD%A3%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        第六章 线性系统的校正方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC07%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%AB%E6%AD%A3.html" class="md-nav__link">
+        第七章 线性离散系统的分析与矫正
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第八章 非线性控制系统分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E7%AC%AC08%E7%AB%A0%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90.html" class="md-nav__link md-nav__link--active">
+        第八章 非线性控制系统分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 上课笔记
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC09%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%BC%E5%90%88.html" class="md-nav__link">
+        第九章 线性系统的状态空间分析与综合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AC%AC10%E7%AB%A0%20%E5%8A%A8%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        第十章 动态系统的最优控制方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%BB%8F%E5%85%B8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA.html" class="md-nav__link">
+        经典控制理论
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 上课笔记
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">第八章 非线性控制系统分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#_1">第八章 非线性控制系统分析</a><ul>
+<li><a href="#1">1 上课笔记</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="1">1 上课笔记<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<hr />
+<p><strong>EXAM NOTIFICATION</strong><br />
+<code>填空选择</code>非线性控制系统的特征 3 点：</p>
+<ul>
+<li>稳定性/输出瞬态响应：与输入信号和初始条件有关（这条可能会考）<br />
+  1. 系统输出的瞬态过程曲线形状与<strong>输入信号大小和系统初始条件</strong>有关。<br />
+  2. 系统的稳定性也与<strong>输入信号大小和初始条件有关。</strong></li>
+<li>自激振荡</li>
+<li>频率响应发生畸变</li>
+</ul>
+<p><code>需要记得公式不考</code></p>
+<p><code>5 分大题</code><strong>描述函数法</strong><br />
+把课本/课件上的例题好好看看就可以了！<br />
+判断交点处自激振荡的稳定性，求交点处频率与幅值.<br />
+只考简单的概念，没有复杂的计算.</p>
+<hr />
+<p>线性系统与非线性系统</p>
+<p>线性系统只是在特定条件下的近似描述<br />
+能否应用叠加定理是线性系统与非线性系统的本质区别。</p>
+<p><strong>稳定性分析复杂</strong>: 无外力作用，且系统输出各阶导数为 0 时，系统处于平衡状态.<br />
+线性系统只有一个平衡点 y=0<br />
+非线性系统可能有多个平衡点，只不过可能是不稳定的平衡点.<br />
+<strong>可能存在自激振荡现象</strong><br />
+<strong>频率响应发生畸变</strong>: 输出存在高次谐波（分频？)</p>
+<hr />
+<p>非线性类型：</p>
+<ul>
+<li>饱和：设计得当可以使超调量小且稳态误差小</li>
+<li>死区特性：系统存在稳态误差（稳态特性）, 降低了系统的跟踪精度（动态特性）, 减小扰动信号影响</li>
+<li>滞环/间隙特性：相当于死区，降低跟踪精度. 运动变化更加剧烈，不利于稳定性.</li>
+<li>继电特性：往往使系统产生震荡<ul>
+<li>继电特性+滞环特性=非单值继电特性</li>
+<li>继电特性+死区特性=单值且有死区继电特性</li>
+<li>a+b+c=非单值且有死区继电特性</li>
+</ul>
+</li>
+<li>摩擦：低速运动不平滑性</li>
+</ul>
+<hr />
+<p>非线性系统分析方法</p>
+<ul>
+<li>存在线性工作区域：线性化处理，线性分析再修正<ul>
+<li>小偏差线性化法（系统方程解析且工作在某一数值附近的较小范围内）</li>
+<li>分段线性化法</li>
+<li>反馈线性化</li>
+</ul>
+</li>
+<li>不存在线性工作区域<ul>
+<li>描述函数法</li>
+<li>相平面法</li>
+<li>（课本上还有一个逆系统法）</li>
+</ul>
+</li>
+</ul>
+<p>线性系统时域分析都是初始值为零，输入阶跃信号.<br />
+非线性系统往往初始值不为零，分析<strong>无输入</strong>（只有干扰）时的情况（或者理解为观察冲激响应？)</p>
+<hr />
+<p>相平面法<br />
+<span class="arithmatex">\(\ddot{x}=f(x,\dot{x})\)</span><br />
+<span class="arithmatex">\(\ddot{x}=d\dot{x},\dot{x}=dx\)</span><br />
+<span class="arithmatex">\(\frac{d\dot{x}}{dx}=\frac{f(x,\dot{x})}{\dot{x}}\)</span></p>
+<hr />
+<p>相平面图的绘制</p>
+<ul>
+<li>解析法<ul>
+<li>直接积分获得<span class="arithmatex">\(f(x,\dot{x})=0\)</span>相轨迹方程</li>
+<li>消除参变量法：消除 t</li>
+</ul>
+</li>
+<li>图解法/作图法：等倾线法</li>
+<li>实验法</li>
+</ul>
+<p>另外，如果分段解析的话，可分情况做出不同区域的相轨迹.</p>
+<hr />
+<p>解析法思路总结：</p>
+<ol>
+<li>
+<p>根据<span class="arithmatex">\(\frac{d\dot{x}}{dx}=\frac{f(x,\dot{x})}{\dot{x}}\)</span>积分可以获得<span class="arithmatex">\(f(x,\dot{x})=0\)</span>曲线.</p>
+<p>对<span class="arithmatex">\(\dot{x}d\dot{x}=f(x,\dot{x})dx\)</span> 进行积分时，需要注意<span class="arithmatex">\(x,\dot{x}\)</span>都是时间的函数，左右同时积分时，积分上下限的确定：<br />
+<span class="arithmatex">\(t:0\to t\)</span><br />
+<span class="arithmatex">\(x(t):x(0)\to x(t)\)</span>简写为<span class="arithmatex">\(x_0\to x\)</span><br />
+<span class="arithmatex">\(\dot{x}(t):\dot{x}(0)\to \dot{x}(t)\)</span>简写为<span class="arithmatex">\(\dot{x}_0\to \dot{x}\)</span></p>
+</li>
+<li>
+<p>积分困难，可以分别求出<span class="arithmatex">\(x(t),\dot{x}(t)\)</span>, 消去 t 画曲线</p>
+</li>
+<li>
+<p>如果还是难以消去 t, 就描点作图</p>
+</li>
+</ol>
+<hr />
+<p>相轨迹每一点切线处的斜率为：<span class="arithmatex">\(\frac{d\dot{x}}{dx}=\frac{f(x,\dot{x})}{\dot{x}}=\alpha\)</span></p>
+<p>奇点：平衡点<span class="arithmatex">\(\frac{\ddot{x}}{\dot{x}}=\frac00\)</span>, 斜率不定<br />
+斜率不定，则相轨迹方向任意，说明这是各个相轨迹交汇处.<br />
+奇点有可能是发射点也有可能是收敛点。当奇点为收敛点时，代表了系统的稳定工作状态.</p>
+<p>对线性系统来说，只有一个平衡状态——即对应一个奇点，<br />
+但对于非线性系统来说，可能有多个平衡状态，即对应多个奇点。<br />
+根据奇点附近相轨迹变化，奇点可分为稳定焦点、不稳定焦点、稳定节点、不稳定节点、中心点和鞍点</p>
+<p>线性二阶系统的奇点分类：</p>
+<ul>
+<li>焦点<ul>
+<li>震荡收敛（二阶欠阻尼）（负实部共轭复根）</li>
+<li>震荡发散（二阶负阻尼<span class="arithmatex">\(-1&lt;\xi&lt;0\)</span>)（正实部共轭复根）</li>
+</ul>
+</li>
+<li>节点<ul>
+<li>单调收敛（二阶过阻尼）（两个负实根）</li>
+<li>单调发散（二阶负阻尼<span class="arithmatex">\(\xi&lt;-1\)</span>&gt;&gt;)（两个正实根）</li>
+</ul>
+</li>
+<li>中心点：到达不了（虚轴极点）</li>
+<li>鞍点（一个正实根，一个负实根）</li>
+</ul>
+<p>
+<figure><img src="assets/%E7%AC%AC08%E7%AB%A0%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/2021-01-06-21-28-53.png" /><figcaption>奇点分类</figcaption>
+</figure>
+</p>
+<hr />
+<p>等倾线法思路总结：</p>
+<ul>
+<li><span class="arithmatex">\(\frac{d\dot{x}}{dx}=\frac{f(x,\dot{x})}{\dot{x}}=\alpha\)</span>画出的曲线上，如果相轨迹穿过这条曲线，那么穿越点处斜率一定为<span class="arithmatex">\(\alpha\)</span></li>
+<li>通过绘制等倾线，我们可以知道任意一个地方的相轨迹斜率</li>
+<li>等倾线法就是通过等倾曲线以及初始点，获得近似的相轨迹.<ul>
+<li>例如我们从一个点<span class="arithmatex">\((x,\dot{x})\)</span>出发</li>
+<li>先看这个点位置的斜率，以及接下来到达的等倾线的斜率</li>
+<li>两个斜率取平均作为从这个点出发的斜率</li>
+<li>这个点以平均斜率出发到达下一个等倾线</li>
+<li>重复上述步骤</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>极限环与自激振荡的稳定性：<br />
+当等倾线不是直线时，相轨迹可能到达一个闭合的环，代表了系统稳定的震荡.<br />
+<figure><img src="assets/%E7%AC%AC08%E7%AB%A0%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/2021-01-06-21-44-07.png" /><figcaption>极限环</figcaption>
+</figure>
+</p>
+<blockquote>
+<p>半稳定极限环是不会稳定震荡的，总是会有微小的扰动偏离极限环，最后发散或者回到奇点.</p>
+</blockquote>
+<p>自激振荡的稳定性：假如说系统到达了自激振荡点，如果带来一个扰动，系统能稳定回归到自激振荡点.<br />
+与系统稳定性是不同的概念。</p>
+<p>同理极限环的稳定性是指能够稳定产生自激振荡，而非系统稳定.</p>
+<p>在描述函数法中，<span class="arithmatex">\(-\frac{1}{N(A)}\)</span>与<span class="arithmatex">\(G(j\omega)\)</span>存在交点则存在自激振荡点，通过扰动使震荡幅值增大/减小来判断工作点能否回到自激振荡点.</p>
+<hr />
+<p>描述函数法</p>
+<p>当系统满足一定的假设条件时，系统中非线性环节在正弦信号作用下的输出可用一次谐波（基波？) 分量来近似. 由此导出非线性环节的<strong>近似等效频率特性</strong>，即描述函数.<br />
+描述函数用来分析无外力作用的情况下，非线性系统的稳定性和自震荡问题.</p>
+<ul>
+<li>优点：不受系统阶次限制，可以分析频率特性</li>
+<li>缺点：系统首先得适合近似，不可以分析时域特性</li>
+</ul>
+<blockquote>
+<p>描述函数不用背，考试会给，但是应该需要会分析.</p>
+</blockquote>
+<p><strong>MyOpinion:</strong><br />
+将非线性环节合成<strong>一个部分</strong>,<br />
+并简化为一个<strong>不改变</strong>正弦信号<strong>频率</strong>, 只改变<strong>幅值</strong>和<strong>相位</strong>的<br />
+不随时间改变的<strong>描述函数</strong>.（相当于复数增益的放大器）<br />
+分析情况：无输入时的系统自激振荡现象，即研究对象是单一频率正弦波（不含直流分量）</p>
+<p>综上，通过限制信号为正弦信号以及对非线性环节近似，将一个非线性系统简化为了"线性时不变系统"，并使用频率法进行分析.</p>
+<ol>
+<li>系统结构一定是/一定能化成下述的形式.<br />
+<figure><img src="assets/%E7%AC%AC08%E7%AB%A0%20%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/2021-01-06-21-54-37.png" /><figcaption>系统结构</figcaption>
+</figure>
+</li>
+<li>非线性部分的输入输出特性是<strong>不随时间改变</strong>的 x 的<strong>奇函数</strong><span class="arithmatex">\(f(x)\)</span>, 或者正弦输入下的输出为 t 的奇对称函数<span class="arithmatex">\(y(t)\)</span>, 即输出不含直流分量，即非线性是对称的.</li>
+<li>线性部分 G 需要较好地滤除高频（来自非线性环节，这样可以更好地拟合）</li>
+<li>非线性元件只有一个正弦输入（系统自激振荡时，N 的输入也是正弦波）</li>
+</ol>
+<hr />
+<p>系统结构化简方法小总结：<br />
+当系统框图结构不满足描述函数法要求的结构时，需要进行化简.</p>
+<ul>
+<li>利用相同特征方程进行化简：只是部分等效（传递函数极点相同）, 这样似乎只是判断稳定性（吧）<ul>
+<li>求出<span class="arithmatex">\(\Phi(s)=\frac{C(s)}{R(s)}\)</span>, 模块使用 N,G 表示</li>
+<li>取特征方程，即<span class="arithmatex">\(\Phi(s)\)</span>的分母</li>
+<li>化成<span class="arithmatex">\(1+NG'=0\)</span>的形式，<span class="arithmatex">\(G'\)</span>就是等效的</li>
+</ul>
+</li>
+<li>利用信号传递关系等效变换<br />
+<strong>MyOpinion:</strong><br />
+  关键点有 N 的输入端 x<code>e(t)</code>,N 的输出端 y<code>x(t)</code>, 以及系统输出端 C<code>c(t)</code><br />
+  找到从 y 出发回到 x 的回路，这个回路上所有的线性模块合并为右图的<code>G(s)</code>, 这样可以画出来一个单位负反馈的环了.<br />
+  因为上面为了凑出来单位负反馈，把原来反馈回路的给合并到<code>G(s)</code>里了，所以找到从 y 到达 C 的部分，在<code>G(s)</code>引出负反馈的端口右边再填上补偿环节，让 y 到达 C 的传函满足原本的关系.</li>
+</ul>
+<hr />
+<p>描述函数<span class="arithmatex">\(N(A,j\omega)=\frac{\dot{X_1}}{\dot E}=\frac{B_1}{A}+j\frac{A_1}{A}\)</span><br />
+输出基波分量的复数相量/正弦输入的复数相量</p>
+<ol>
+<li>输入正弦信号</li>
+<li>获得输出信号（需要检验不含直流分量，含的话就不能用这个方法分析了）</li>
+<li><del>获得基波分量正弦信号</del> 求<span class="arithmatex">\(A_1,B_1,X_1,\varphi_1\)</span></li>
+<li>获得描述函数<span class="arithmatex">\(N(A,j\omega)\)</span><br />
+   当非线性环节中不包含储能元件时，其输出的一次谐波分量的幅值和相位差与<span class="arithmatex">\(\omega\)</span>无关，因此描述函数<strong>只是</strong>输入正弦信号幅值的函数<span class="arithmatex">\(N(A)\)</span></li>
+</ol>
+<div class="arithmatex">\[
+\begin{aligned}
+    x(t)      &amp; =\frac{A_{0}}{2}+\sum_{i=1}^{\infty}\left(A_{i} \cos i \omega t+B_{i} \sin i \omega t\right)\\
+    A_{0}     &amp; =\frac{1}{2 \pi} \int_{0}^{2 \pi} x(t) d(\omega t) \quad A_{0}\text{是直流分量}              \\
+    A_{i}     &amp; =\frac{1}{\pi} \int_{0}^{2 \pi} x(t) \cos i \omega t d(\omega t) \quad i=0,1,2, \cdots       \\
+    B_{i}     &amp; =\frac{1}{\pi} \int_{0}^{2 \pi} x(t) \sin i \omega t d(\omega t) \quad i=1,2,3, \cdots       \\
+    Y_n       &amp; =\sqrt{A_n^2+B_n^2}\\
+    \varphi_n &amp; =\arctan\frac{A_n}{B_n}\\
+\end{aligned}
+\]</div>
+<blockquote>
+<p>这里的<span class="arithmatex">\(x(t)\)</span>是非线性环节的稳态输出.</p>
+</blockquote>
+<hr />
+<p>非线性系统简化</p>
+<ul>
+<li>并联：描述函数线性相加</li>
+<li>串联：图解法化简（有点像高中学的复合函数）</li>
+</ul>
+<hr />
+<p>描述函数法分析非线性系统稳定性<br />
+（描述函数分析非线性系统自激振荡）</p>
+<ol>
+<li>实际是线性系统频域分析方法的扩展，复杂程度依次为：</li>
+<li>线性系统恒定增益：一个点-1</li>
+<li>线性系统变增益：<span class="arithmatex">\(-\frac{1}{K_1}\to-\frac{1}{K_2}\)</span></li>
+<li>线性系统复数增益（描述函数）:<span class="arithmatex">\(-\frac{1}{N|_{A=0}}\to-\frac{1}{N|_{A=\infty}}\)</span></li>
+<li>下述方法只适用于<span class="arithmatex">\(G(s)\)</span>不具有右极点的情况，如果<span class="arithmatex">\(G(s)\)</span>具有低通特性，则<span class="arithmatex">\(G(s)\)</span>应当不具有右极点.</li>
+</ol>
+<p>系统特征方式<span class="arithmatex">\(1+N(A)G(j\omega)=0\)</span><br />
+之前看 Nyquist 曲线与-1 点之间的关系判断稳定性.<br />
+现在看 Nyquist 曲线与曲线<span class="arithmatex">\(-\frac{1}{N(A)}\)</span>的关系</p>
+<blockquote>
+<p><strong>MyOpinion:</strong> 之前是固定了一个点，看奈氏曲线是否包围这个点 (-1,0) 判稳. 现在是一个<strong>点集</strong>，对于每一个点，分别看奈氏曲线是否包围这个点.<br />
+当曲线包围点 P 时，系统不稳定，幅值将增大.<br />
+当曲线不包围点 P 时，系统稳定，幅值将减小.<br />
+当曲线穿过点 P 时，系统临界稳定，处于等幅振荡状态.</p>
+</blockquote>
+<ul>
+<li><strong>奈氏曲线 A</strong>（此处记为曲线<span class="arithmatex">\(\Gamma_G\)</span>) 不包围<strong>负倒描述函数曲线 B</strong>（此处记为曲线<span class="arithmatex">\(\Gamma_N\)</span>), 系统总是稳定</li>
+<li>A 包围 B, 系统总是不稳定</li>
+<li>A 与 B 有交点，<strong>交点</strong>处是系统<strong>周期运动的点</strong>，<span class="arithmatex">\(G(j\omega)\)</span>确定频率，<span class="arithmatex">\(-\frac{1}{N(A)}\)</span>确定幅值.<blockquote>
+<p>计算方法之一：实部对应相等，虚部对应相等</p>
+</blockquote>
+</li>
+</ul>
+<p>判断<strong>周期运动</strong>是否稳定（是否是稳定的自激振荡点）:</p>
+<ul>
+<li>给一个小扰动</li>
+<li>交点 P 移动到点 Q</li>
+<li>看点 Q 是否被奈氏曲线包围，判断稳定性<ul>
+<li>不稳定，震荡幅值将增大</li>
+<li>稳定，震荡幅值将减小</li>
+</ul>
+</li>
+<li>Q 点沿着负倒描述函数曲线幅值 A 增大的方向走，看看能不能回到 P 点</li>
+</ul>
+<p>结论：<br />
+<span class="arithmatex">\(\Gamma_G\)</span>包围区域是不稳定区域，不包围的区域是稳定区域，曲线上是等幅振荡的临界区域.<br />
+<span class="arithmatex">\(\Gamma_N\)</span>与<span class="arithmatex">\(\Gamma_G\)</span>相交时，如果沿着 A 增加的方向，从不稳定区域进入稳定区域，则交点处对应稳定的周期运动；从稳定区域进入不稳定区域，则交点处对应不稳定的周期运动.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="%E7%AC%AC07%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%AB%E6%AD%A3.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 第七章 线性离散系统的分析与矫正" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              第七章 线性离散系统的分析与矫正
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="%E7%AC%AC09%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%BC%E5%90%88.html" class="md-footer__link md-footer__link--next" aria-label="Next: 第九章 线性系统的状态空间分析与综合" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              第九章 线性系统的状态空间分析与综合
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

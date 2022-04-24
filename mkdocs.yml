@@ -1,0 +1,63 @@
+site_name: 控制理论笔记 Automation
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+  plugins:
+    - offline 
+    - privacy
+
+use_directory_urls: false # 此项用于 build 结果可以本地打开
+docs_dir: 'resources' # 使用单引号, 防止转义\
+site_dir: 'docs'
+
+
+markdown_extensions:
+  - markdown_captions # 给图片添加标题 可选
+  - sane_lists # 优化列表显示
+  - admonition
+  - pymdownx.details
+  - nl2br
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      marker: "[toc]"
+      permalink: true
+  - tables
+  - admonition: {}
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.smartsymbols # 一些字符序列会自动变成特殊符号
+  - pymdownx.superfences:
+      custom_fences: # 添加对mermaid图表的支持
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
