@@ -15,10 +15,6 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
-  plugins:
-    - offline 
-    - privacy
-
 use_directory_urls: false # 此项用于 build 结果可以本地打开
 docs_dir: 'resources' # 使用单引号, 防止转义\
 site_dir: 'docs'
